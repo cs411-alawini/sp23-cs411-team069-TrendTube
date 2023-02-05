@@ -50,3 +50,8 @@ We will get the data from the staff-selected list of data sets, which is from Ka
 ## Functionality
 
 Functionally, our application will allow users to create different playlists of trending videos. The users can update their playlists by adding and removing specified videos. Furthermore, they can search for videos by using the search bar, and they can order the results by using a drop-down with various different filters.
+
+## UI
+
+![TrendTubeUI](https://user-images.githubusercontent.com/90290549/216851303-de2fbe2a-ddf4-48a7-bd71-a5ef99b30d9c.jpg)
+
