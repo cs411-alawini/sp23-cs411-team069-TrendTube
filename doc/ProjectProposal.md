@@ -46,3 +46,7 @@ Our data includes a widespread collection of trending YouTube videos from a vari
 different countries, and it includes information such as view count, trending date, 
 likes, dislikes, and tags. 
 We will get the data from the staff-selected list of data sets, which is from Kaggle.
+
+## Functionality
+
+Functionally, our application will allow users to create different playlists of trending videos. The users can update their playlists by adding and removing specified videos. Furthermore, they can search for videos by using the search bar, and they can order the results by using a drop-down with various different filters.
