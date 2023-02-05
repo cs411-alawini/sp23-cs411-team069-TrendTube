@@ -5,7 +5,7 @@
 |   Info      |        Description     |
 | ----------- | ---------------------- |
 | TeamID      |        Team-069        |
-| TeamName    |    finalproject411     |
+| TeamName    |        TrendTube       |
 | Captain     |  Lorenzo Bujalil Silva |
 | Captain     |  lorenzo9@illinois.edu |
 | Member1     |    Kaushik Pulgari     |
