@@ -8,19 +8,19 @@ Furthermore, we plan to implement more complex features, such as the ability cre
 
 ## Proposal
 
-### Describe what data is stored in the database. (Where is the data from, and what attributes and information would be stored?)
+### Target Data
 
 The database stores the most popular videos on YouTube, complete with video title, channel title, publish time, tags, views, likes and dislikes, 
 description, and comment count. Additionally, each video has been categorized and further divided into 11 regional trending lists, allowing for 
 unique representation of the top videos in each area.
 
-### What are the basic functions of your web application? (What can users of this website do? Which simple and complex features are there?)
+### Basic Functions
 
 Simple features: Our idea is to create a database of trending YouTube videos, and to allow users filter these videos by specified options (view count, region, likes, etc). Furthermore, we plan to add a search bar so users can search by title or keyword.
 
 Complex features: We also plan to allow the user to create playlists of videos. The user can have multiple different playlists, and can update them by adding and removing videos. Furthermore, if time permits, we also want to implement a video suggestion system. To achieve this, we might have to develop a user login database to record and save each user’s video preferences.
 
-### What would be a good creative component (function) that can improve the functionality of your application? (What is something cool that you want to include? How are you planning to achieve it?)
+### Possible Creative Function
 
 A “I’m feeling lucky” button, similar to Google’s. It could be implemented by randomly selecting a trending video and its corresponding tag. We could choose a video and loop through to randomly select a tag, and then display the tag as the endpoint. For example, a video with the tag “adventure” will be displayed as “I’m feeling adventure”.
 
