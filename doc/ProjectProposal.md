@@ -45,7 +45,7 @@ in other countries as well.
 Our data includes a widespread collection of trending YouTube videos from a variety of 
 different countries, and it includes information such as view count, trending date, 
 likes, dislikes, and tags. 
-We will get the data from the staff-selected list of data sets, which is from Kaggle.
+We will get the data from the staff-selected list of data sets, which is from Kaggle. Link to data: https://www.kaggle.com/datasets/rsrishav/youtube-trending-video-dataset?select=US_youtube_trending_data.csv
 
 ## Functionality
 
