@@ -1,28 +1,10 @@
 # TrendTube
 
-## Summary
+### Summary
 
 Our project, TrendTube, is an application that aims to simplify the process of finding, filtering, and choosing trending YouTube videos to watch. It will store a database of trending videos from various different countries. Users can find these videos by using the search bar to filter by title and keywords, and they can order the results by a variety of filters, such as likes, dislikes, region, etc.
 Furthermore, we plan to implement more complex features, such as the ability create playlists. Users can create multiple different playlists, and can update them by adding and removing specific videos. Also, we hope to add a recommendation system that looks at a user’s previously watched videos, and then randomly selects a new unwatched video with similar tags.
 
-
-## Proposal
-
-### Target Data
-
-The database stores the most popular videos on YouTube, complete with video title, channel title, publish time, tags, views, likes and dislikes, 
-description, and comment count. Additionally, each video has been categorized and further divided into 11 regional trending lists, allowing for 
-unique representation of the top videos in each area.
-
-### Basic Functions
-
-Simple features: Our idea is to create a database of trending YouTube videos, and to allow users filter these videos by specified options (view count, region, likes, etc). Furthermore, we plan to add a search bar so users can search by title or keyword.
-
-Complex features: We also plan to allow the user to create playlists of videos. The user can have multiple different playlists, and can update them by adding and removing videos. Furthermore, if time permits, we also want to implement a video suggestion system. To achieve this, we might have to develop a user login database to record and save each user’s video preferences.
-
-### Possible Creative Function
-
-A “I’m feeling lucky” button, similar to Google’s. It could be implemented by randomly selecting a trending video and its corresponding tag. We could choose a video and loop through to randomly select a tag, and then display the tag as the endpoint. For example, a video with the tag “adventure” will be displayed as “I’m feeling adventure”.
 
 ## Description
 
@@ -38,7 +20,7 @@ further ease the process of deciding what videos to watch.
 Our application is useful because it simplifies the process of searching for and selecting 
 trending videos to watch. A similar application is YouTube itself. However, our application is 
 unique because it only includes trending videos, and it will allow users to see trending videos
-in other countries as well.
+in other countries as well. The complicated features of the app will provide a innovative way to recommend videos to the users depending on the videos they have watched in the past. A database will be created that will create a profile for each user used to map a user to a certain genre of content. Users will be able to grow with the application which will cause more relevant content to be recommended. In the end, the application will be tool to provide relevant and entertaining content with ease.
 
 ## Realness
 
@@ -47,9 +29,40 @@ different countries, and it includes information such as view count, trending da
 likes, dislikes, and tags. 
 We will get the data from the staff-selected list of data sets, which is from Kaggle. Link to data: https://www.kaggle.com/datasets/rsrishav/youtube-trending-video-dataset?select=US_youtube_trending_data.csv
 
+## Target Data
+
+The database stores the most popular videos on YouTube, complete with video title, channel title, publish time, tags, views, likes and dislikes, 
+description, and comment count. Additionally, each video has been categorized and further divided into 11 regional trending lists, allowing for 
+unique representation of the top videos in each area.
+
 ## Functionality
 
-Functionally, our application will allow users to create different playlists of trending videos. The users can update their playlists by adding and removing specified videos. Furthermore, they can search for videos by using the search bar, and they can order the results by using a drop-down with various different filters.
+Functionally, our application will allow users to create different playlists of trending videos. The users can update their playlists by adding and removing specified videos. Furthermore, they can search for videos by using the search bar, and they can order the results by using a drop-down with various different filters. Users will also added to a database when they create an account with our application, where they could read, update, or delete information they provided.
+
+### Basic Functions
+
+Simple features: Our idea is to create a database of trending YouTube videos, and to allow users filter these videos by specified options (view count, region, likes, etc). Furthermore, we plan to add a search bar so users can search by title or keyword.
+
+Complex features: We also plan to allow the user to create playlists of videos. The user can have multiple different playlists, and can update them by adding and removing videos. Furthermore, if time permits, we also want to implement a video suggestion system. To achieve this, we might have to develop a user login database to record and save each user’s video preferences.
+
+### Possible Creative Function
+
+A “I’m feeling lucky” button, similar to Google’s. It could be implemented by randomly selecting a trending video and its corresponding tag. We could choose a video and loop through to randomly select a tag, and then display the tag as the endpoint. For example, a video with the tag “adventure” will be displayed as “I’m feeling adventure”.
+
+## Work Distribution
+
+We plan on dividing up the work for the project into sections of the application that need to be implemented, as seen below. Each person will be assigned to focus on
+
+### Front-End
+
+### Front-End to Back-End Connection
+
+### Back-End
+
+### Deployment
+
+
+
 
 ## UI
 
