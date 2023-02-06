@@ -56,17 +56,50 @@ We plan on dividing up the work for the project into sections of the application
 ### Front-End
 The front-end of the application will be built on React, and will be able to provide an adequate UI to be able to complete the CRUD functionality. The front end will also need to display database data, which will range from video previews, and user information. If time allows, more effort will be given to the front-end.
 
+Member Assignment:
+
+Lorenzo Bujalil Silva - Will assist in writing code for the front end and provide insightful ideas to use to build the UI.
+
+Kaushik Pulgari - Will assist in writing code for the front end and provide insightful ideas to use to build the UI.
+
+Lohit Muralidharan - Will handle and lead the majority of the front-end development. 
+
+Yifan Jiang - Will assist in writing code for the front end and provide insightful ideas to use to build the UI.
+
 ### Front-End to Back-End Connection
 We will be using Express and Node to conduct our communication between the front and back ends of the application. This connection will handle routing and HTTP requests on the server side. 
 
+Member Assignment:
+
+Lorenzo Bujalil Silva - Will handle building routing requests on that will connect the UI to the database.
+
+Kaushik Pulgari - Will assist in writing code for the front to back end connection when necessary. 
+
+Lohit Muralidharan - Will assist in writing code for the front to back end connection when necessary. 
+
+Yifan Jiang - Will assist in writing code for the front to back end connection when necessary.
 
 ### Back-End
 The back-end of the application will be the most important aspect and will be built using Mongo DB. We will construct tables store user information, trending videos, and user playlists.
 The back-end will also need to have the ability to handle requests to filter or order the data.
 
+Member Assignment:
+
+Lorenzo Bujalil Silva - Focus on building user and user playlists databases; will assist in building other databases functionality, and handling requests on data.
+
+Kaushik Pulgari - Focus on building trending videos database; will assist in building other databases functionality, and handling requests on data.
+
+Lohit Muralidharan - Focus on building trending videos and user playlists databases; will assist in building other databases functionality, and handling requests on data.
+
+Yifan Jiang - Focus on building trending videos database; will assit in building other databases functionality, and handling requests on data.
+
+
 ### Deployment
 The deployment of the project will be done using Google Cloud Platform. This is to ensure that users can access the site and test the functionality once connected to the internet.
 
+Member Assignment: 
+
+All Team Members will work on packaging the project, so that it is refined and capable to be deployed. 
 
 
 ## UI
