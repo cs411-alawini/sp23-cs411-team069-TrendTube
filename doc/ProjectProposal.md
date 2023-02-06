@@ -51,16 +51,21 @@ A “I’m feeling lucky” button, similar to Google’s. It could be implement
 
 ## Work Distribution
 
-We plan on dividing up the work for the project into sections of the application that need to be implemented, as seen below. Each person will be assigned to focus on
+We plan on dividing up the work for the project into sections of the application that need to be implemented, as seen below. Each person will be assigned to focus on one section of the application and  will be able to move from section to section as some sections will be easier to complete than others. Each member of the group will be able to assist each other in completion of all the sections. Along side taking a section to complete the application, each team member will need to spend adequate time working on the bulk of the application which will be the databases. 
 
 ### Front-End
+The front-end of the application will be built on React, and will be able to provide an adequate UI to be able to complete the CRUD functionality. The front end will also need to display database data, which will range from video previews, and user information. If time allows, more effort will be given to the front-end.
 
 ### Front-End to Back-End Connection
+We will be using Express and Node to conduct our communication between the front and back ends of the application. This connection will handle routing and HTTP requests on the server side. 
+
 
 ### Back-End
+The back-end of the application will be the most important aspect and will be built using Mongo DB. We will construct tables store user information, trending videos, and user playlists.
+The back-end will also need to have the ability to handle requests to filter or order the data.
 
 ### Deployment
-
+The deployment of the project will be done using Google Cloud Platform. This is to ensure that users can access the site and test the functionality once connected to the internet.
 
 
 
