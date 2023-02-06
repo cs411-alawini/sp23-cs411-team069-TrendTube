@@ -27,13 +27,14 @@ in other countries as well. The complicated features of the app will provide a i
 Our data includes a widespread collection of trending YouTube videos from a variety of 
 different countries, and it includes information such as view count, trending date, 
 likes, dislikes, and tags. 
-We will get the data from the staff-selected list of data sets, which is from Kaggle. Link to data: https://www.kaggle.com/datasets/rsrishav/youtube-trending-video-dataset?select=US_youtube_trending_data.csv
+We will get the data from the staff-selected list of data sets, which is from Kaggle. Link to data: https://www.kaggle.com/datasets/rsrishav/youtube-trending-video-dataset?select=US_youtube_trending_data.csv. 
+In the end, data is applicable to the real world and users will find enterntainment from using our application.
 
 ## Target Data
 
 The database stores the most popular videos on YouTube, complete with video title, channel title, publish time, tags, views, likes and dislikes, 
 description, and comment count. Additionally, each video has been categorized and further divided into 11 regional trending lists, allowing for 
-unique representation of the top videos in each area.
+unique representation of the top videos in each area. 
 
 ## Functionality
 
