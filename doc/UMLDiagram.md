@@ -19,9 +19,9 @@
 # Relational Schema
 Entities:
 - User(userID INT [PK], userName VARCHAR(20), userPassword VARCHAR(20))
-- TrendingVideo(videoID VARCHAR(11) [PK], videoTitle VARCHAR(50), videoCategory INT, viewCount INT, numLikes INT, numDislikes INT, trendingDate VARCHAR(20), thumbnailLink VARCHAR(50), tags VARCHAR(100), channelTitle VARCHAR(50))
+- TrendingVideo(videoID VARCHAR(11) [PK], videoTitle VARCHAR(50), videoCategory INT, viewCount INT, numLikes INT, numDislikes INT, trendingDate DATE, thumbnailLink VARCHAR(50), tags VARCHAR(100), channelTitle VARCHAR(50))
 - UserPlaylist(playlistID INT [PK], userID INT [FK to User.userID], playlistName VARCHAR(30))
-- WatchedVideo(watchedVideoID INT [PK], trendingVideoID VARCHAR(11) [FK to TrendingVideo.videoID], userID INT [FK to User.userID], watchedDate VARCHAR(20))
+- WatchedVideo(watchedVideoID INT [PK], trendingVideoID VARCHAR(11) [FK to TrendingVideo.videoID], userID INT [FK to User.userID], watchedDate DATE)
 - RecommendedVideo(recommendedVideoID INT [PK], trendingVideoID VARCHAR(11) [FK to TrendingVideo.videoID], userID INT [FK to User.userID])
 - Region(RegionName VARCHAR(20) [PK])
 
