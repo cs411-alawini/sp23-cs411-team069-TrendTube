@@ -3,6 +3,12 @@
 ![PT1S2New drawio-3](https://user-images.githubusercontent.com/90290549/220477560-c51da7d7-d9b6-4e97-af47-1fb2370d2ba0.png)
 
 # Entity Descriptions
+User: Contains user login information.
+Region: Specifies which regions to pull trending videos from.
+User Playlist: Collection of trending videos that are saved by the user. Weak entity because playlistID is not sufficient in uniquely identifying specific playlists (two users could have playlistID = 1), so it needs foreign key reference to userID.
+Trending Video: Instance of a single trending video. Can be watched, recommended, and added to user playlists.
+Watched Video: Instance of single trending video that has been watched by the user. Is a weak entity because watchedVideoID cannot uniquely determine specific watched videos (two users could have watchedVideoID = 10). Thus, it needs a foreign key reference to userID. Also needs a foreign key reference to trendingVideoID to pull information such as videoTitle, thumbnailLink, and videoCategory.
+Recommended Video: Instance of single recommended video that has been recommended to the user. Is a weak entity because recommendedVideoID cannot uniquely determine specific recommended videos (two users could have recommendedVideoID = 5). Thus, it needs a foreign key reference to userID. Also needs a foreign key reference to trendingVideoID to pull information such as videoTitle and thumbnailLink.
 
 # Relationship Assumptions
 (* = any number of)
