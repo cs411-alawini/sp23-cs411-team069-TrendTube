@@ -1,6 +1,6 @@
 # UML Diagram
 
-![PT1S2New drawio-2](https://user-images.githubusercontent.com/90290549/220476048-b6027a83-9cc0-4083-a54c-92c31f16c6db.png)
+![PT1S2New drawio-3](https://user-images.githubusercontent.com/90290549/220477560-c51da7d7-d9b6-4e97-af47-1fb2370d2ba0.png)
 
 # Entity Descriptions
 
@@ -21,8 +21,8 @@ Entities:
 - User(userID INT [PK], userName VARCHAR(20), userPassword VARCHAR(20))
 - TrendingVideo(videoID VARCHAR(11) [PK], videoTitle VARCHAR(50), videoCategory INT, viewCount INT, numLikes INT, numDislikes INT, trendingDate VARCHAR(20), thumbnailLink VARCHAR(50), tags VARCHAR(100), channelTitle VARCHAR(50))
 - UserPlaylist(playlistID INT [PK], userID INT [FK to User.userID], playlistName VARCHAR(30))
-- WatchedVideo(watchedVideoID INT [PK], trendingVideoID VARCHAR(11) [FK to TrendingVideo.videoID], userID INT [FK to User.userID], thumbnailLink VARCHAR(50) [FK to TrendingVideo.thumbnailLink], videoTitle VARCHAR(50) [FK to TrendingVideo.videoTitle], videoCategory INT [FK to TrendingVideo.videoCategory], watchedDate VARCHAR(20))
-- RecommendedVideo(recommendedVideoID INT [PK], trendingVideoID VARCHAR(11) [FK to TrendingVideo.videoID], userID INT [FK to User.userID], thumbnailLink VARCHAR(50) [FK to TrendingVideo.thumbnailLink], videoTitle VARCHAR(50) [FK to TrendingVideo.videoTitle], videoCategory INT [FK to TrendingVideo.videoCategory])
+- WatchedVideo(watchedVideoID INT [PK], trendingVideoID VARCHAR(11) [FK to TrendingVideo.videoID], userID INT [FK to User.userID], watchedDate VARCHAR(20))
+- RecommendedVideo(recommendedVideoID INT [PK], trendingVideoID VARCHAR(11) [FK to TrendingVideo.videoID], userID INT [FK to User.userID])
 - Region(RegionName VARCHAR(20) [PK])
 
 Many-to-Many Relationships:
