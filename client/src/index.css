@@ -6,3 +6,9 @@
 body {
     background-color: #e2e9f7;
 }
+.page {
+    display: flex;
+}
+.right {
+   background-color: black;
+}

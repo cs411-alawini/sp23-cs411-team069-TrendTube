@@ -5,6 +5,9 @@ const app = express();
 const mysql = require('mysql');
 
 // Every MySQL Database has a host, user, password, and database name
+// mySQL port: 3306
+// mySQL username: root
+// mySQL password: password
 const db = mysql.createPool({
     host: 'localhost',
     user: 'root',
