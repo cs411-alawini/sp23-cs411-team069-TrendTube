@@ -18,11 +18,21 @@ const sideBar2 = {
   width : '7.75vw',
   backgroundColor : 'white'
 }
+const sideBar3 = {
+  height : '100vh',
+  width : '82.5vw',
+  backgroundColor : '#e2e9f7'
+}
+const sideBar4 = {
+  height : '100vh',
+  width : '92.25vw',
+  backgroundColor : '#e2e9f7'
+}
 
 
-function Sidebar() {
-  const [Page, setPage] = useState('Main');
+function Sidebar(props) {
   const [sideBar, openSideBar] = useState(true);
+  const [Page, setPage] = useState('Main');
 
   let arrow = useRef(<HiArrowSmLeft/>);
   let title = useRef('rendtube');
@@ -34,8 +44,9 @@ function Sidebar() {
   let profile = useRef('Profile');
   let sidebarSetting = useRef(sideBar1);
 
-
-  function changePage(param) { setPage(param); }
+  function changePage(param) { 
+    setPage(param); 
+  }
 
   useEffect(()=>{ 
     console.log(Page) 
@@ -57,6 +68,7 @@ function Sidebar() {
         signOut.current = '';
         profile.current = '';
         sidebarSetting.current = sideBar2;
+        props.changeState(sideBar4);
     } else {
         openSideBar(true);
         arrow.current = <HiArrowSmLeft/>;
@@ -68,6 +80,7 @@ function Sidebar() {
         signOut.current = 'Sign Out';
         profile.current = 'Profile';
         sidebarSetting.current = sideBar1;
+        props.changeState(sideBar3);
     }
   }
   
