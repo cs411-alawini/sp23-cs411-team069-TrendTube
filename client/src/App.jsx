@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import Axios from 'axios'
 import VideoSection from './components/videoSection/VideoSection'
 import Navbar from './components/navbar/Navbar'
@@ -13,13 +13,20 @@ const sideBar3 = {
 
 function App() {
   const [rightState, setRightState] = useState(sideBar3);
+  const [lightOrDark, setLightOrDark] = useState(true);
+  
+  useEffect(() => {
+    console.log(!lightOrDark);
+  },[lightOrDark])
 
   return (
     <>
       <div className='page'>
-        <Sidebar changeState={(setState) => { setRightState(setState) }}/>
+        <Sidebar changeState={(setState) => { 
+          setRightState(setState);
+        }}/>
         <div className='right' style={ rightState }>
-          <Navbar/>
+          <Navbar changeMode={(setMode)=>{setLightOrDark(setMode)}}/>
           <VideoSection/>
         </div>
       </div>

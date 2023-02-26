@@ -1,7 +1,7 @@
 import React from 'react'
 import './navbar.css'
 import { MdOutlineDarkMode } from 'react-icons/md'
-import { BiSearch } from 'react-icons/bi'
+import { HiSearch } from 'react-icons/hi'
 import { useState } from 'react'
 
 function Navbar(props) {
@@ -10,11 +10,11 @@ function Navbar(props) {
     <div className='navbar'>
       <button className='light' onClick={() => {
         setLightOrDark(!lightOrDark);
-        console.log(!lightOrDark);
+        props.changeMode(!lightOrDark);
       }}><MdOutlineDarkMode/></button>
       <div className='searchBar'>
         <input className='search' type='text' placeholder='Search'/>
-        <button className='submitSearch' onClick={()=>{}}><BiSearch/></button>
+        <button className='submitSearch' onClick={()=>{}}><HiSearch/></button>
       </div>
       <select className='lang'>
         <option value='eng'>eng</option>
