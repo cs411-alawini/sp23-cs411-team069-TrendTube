@@ -2,10 +2,19 @@ import React from 'react'
 import './navbar.css'
 import { MdOutlineDarkMode } from 'react-icons/md'
 import { HiSearch } from 'react-icons/hi'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
+import Axios from 'axios'
 
 function Navbar(props) {
   const [lightOrDark, setLightOrDark] = useState(true);
+  let searchString = useRef('');
+  
+  Axios.post("http://localhost:4000/api/post/search", {
+    val: searchString
+  }).then((response) => {
+    console.log(response);
+  })
+
   return (
     <div className='navbar'>
       <button className='light' onClick={() => {

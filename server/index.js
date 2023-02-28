@@ -60,7 +60,7 @@ app.get('/api/get/allValues', (req,res) => {
 // POST Request: Create Data
 // @req -> getting info from frontend
 // @res -> sending info to frontend
-app.post('/api/post', (req,res) => {
+app.post('/api/post/search', (req,res) => {
     res.send('Hello World!?!')
 });
 
