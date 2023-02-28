@@ -26,18 +26,33 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 //All Queries in string formats
-const q1 = fs.readFileSync('../database/db1.sql').toString();
+const allValues = fs.readFileSync('../database/allValues.sql').toString();
+const initialDisplay = fs.readFileSync('../database/initialDisplay.sql').toString();
 
 // GET Request: Fetch Data
 // @req -> getting info from frontend
 // @res -> sending info to frontend
-app.get('/', (req,res) => {
-    db.query(q1, (err, result) => {
+app.get('/api/get/initialValues', (req,res) => {
+    db.query(initialDisplay, (err, result) => {
         if (err) {
             console.log(err)
         } else {
             console.log(result);
-            res.send(q1);
+            res.send(result);
+        }
+    });
+});
+
+// GET Request: Fetch Data
+// @req -> getting info from frontend
+// @res -> sending info to frontend
+app.get('/api/get/allValues', (req,res) => {
+    db.query(allValues, (err, result) => {
+        if (err) {
+            console.log(err)
+        } else {
+            console.log(result);
+            res.send(result);
         }
     });
 });
@@ -45,21 +60,21 @@ app.get('/', (req,res) => {
 // POST Request: Create Data
 // @req -> getting info from frontend
 // @res -> sending info to frontend
-app.post('/', (req,res) => {
+app.post('/api/post', (req,res) => {
     res.send('Hello World!?!')
 });
 
 // PUT Request: Update Data else Create Data
 // @req -> getting info from frontend
 // @res -> sending info to frontend
-app.put('/', (req,res) => {
+app.put('/api/put', (req,res) => {
     res.send('Hello World!?!')
 });
 
 // DELETE Request: Delete Data
 // @req -> getting info from frontend
 // @res -> sending info to frontend
-app.delete('/', (req,res) => {
+app.delete('/api/delete', (req,res) => {
     res.send('Hello World!?!')
 });
 

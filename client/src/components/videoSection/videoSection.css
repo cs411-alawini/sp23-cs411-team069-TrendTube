@@ -1,4 +1,11 @@
 .videoSection {
     height: 90vh;
-    border: 0.5px solid black;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-top: 30px;
+}
+.videoSection embed {
+    margin: 5px;
+    border-radius: 10px;
 }

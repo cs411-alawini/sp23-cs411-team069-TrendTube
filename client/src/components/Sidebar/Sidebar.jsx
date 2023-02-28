@@ -21,18 +21,21 @@ const sideBar2 = {
 const sideBar3 = {
   height : '100vh',
   width : '82.5vw',
-  backgroundColor : '#e2e9f7'
+  backgroundColor : '#e2e9f7',
+  marginLeft: '17.5vw'
 }
 const sideBar4 = {
   height : '100vh',
   width : '92.25vw',
-  backgroundColor : '#e2e9f7'
+  backgroundColor : '#e2e9f7',
+  marginLeft: '7.75vw'
 }
 
 
 function Sidebar(props) {
   const [sideBar, openSideBar] = useState(true);
   const [Page, setPage] = useState('Main');
+  const [lightOrDark, setLightOrDark] = useState(true);
 
   let arrow = useRef(<HiArrowSmLeft/>);
   let title = useRef('rendtube');

@@ -1,5 +1,4 @@
 import React, { useRef, useState, useEffect } from 'react'
-import Axios from 'axios'
 import VideoSection from './components/videoSection/VideoSection'
 import Navbar from './components/navbar/Navbar'
 import Sidebar from './components/sidebar/Sidebar'
@@ -8,7 +7,8 @@ import './index.css'
 const sideBar3 = {
   height : '100vh',
   width : '82.5vw',
-  backgroundColor : '#e2e9f7'
+  backgroundColor : '#e2e9f7',
+  marginLeft: '17.5vw'
 }
 
 function App() {
