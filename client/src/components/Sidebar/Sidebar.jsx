@@ -31,11 +31,32 @@ const sideBar4 = {
   marginLeft: '7.75vw'
 }
 
+const sideBar1Dark = {
+  height : '100vh',
+  width : '17.5vw',
+  backgroundColor : '#222624'
+}
+const sideBar2Dark = {
+  height : '100vh',
+  width : '7.75vw',
+  backgroundColor : '#222624'
+}
+const sideBar3Dark = {
+  height : '100vh',
+  width : '82.5vw',
+  backgroundColor : '#161818',
+  marginLeft: '17.5vw'
+}
+const sideBar4Dark = {
+  height : '100vh',
+  width : '92.25vw',
+  backgroundColor : '#161818',
+  marginLeft: '7.75vw'
+}
 
 function Sidebar(props) {
-  const [sideBar, openSideBar] = useState(true);
+  let sideBarOpen = useRef(true);
   const [Page, setPage] = useState('Main');
-  const [lightOrDark, setLightOrDark] = useState(true);
 
   let arrow = useRef(<HiArrowSmLeft/>);
   let title = useRef('rendtube');
@@ -51,17 +72,18 @@ function Sidebar(props) {
     setPage(param); 
   }
 
-  useEffect(()=>{ 
-    console.log(Page) 
-  },[Page]);
-
-  useEffect(()=>{ 
-    console.log(sideBar);
-  },[sideBar]);
+  useEffect(() => {
+    sidebarSetting.current = props.isLight ? (sideBarOpen.current ? sideBar1 : sideBar2) : (sideBarOpen.current ? sideBar1Dark : sideBar2Dark);
+    if (sideBarOpen.current === true) {
+      props.changeState(props.isLight ? sideBar3 : sideBar3Dark);
+    } else {
+      props.changeState(props.isLight ? sideBar4 : sideBar4Dark);
+    }
+  },[props.isLight]);
 
   const changeSideBar = () => {
-    if (sideBar === true) {
-        openSideBar(false);
+    if (sideBarOpen.current === true) {
+        sideBarOpen.current = false;
         arrow.current = <HiArrowSmRight/>;
         title.current = '';
         main.current = '';
@@ -70,10 +92,10 @@ function Sidebar(props) {
         playlist.current = '';
         signOut.current = '';
         profile.current = '';
-        sidebarSetting.current = sideBar2;
-        props.changeState(sideBar4);
+        sidebarSetting.current = props.isLight ? (sideBarOpen.current ? sideBar1 : sideBar2) : (sideBarOpen.current ? sideBar1Dark : sideBar2Dark);
+        props.changeState(props.isLight ? sideBar4 : sideBar4Dark);
     } else {
-        openSideBar(true);
+        sideBarOpen.current = true;
         arrow.current = <HiArrowSmLeft/>;
         title.current = 'rendtube';
         main.current = 'Main';
@@ -82,8 +104,8 @@ function Sidebar(props) {
         playlist.current = 'Playlist';
         signOut.current = 'Sign Out';
         profile.current = 'Profile';
-        sidebarSetting.current = sideBar1;
-        props.changeState(sideBar3);
+        sidebarSetting.current = props.isLight ? (sideBarOpen.current ? sideBar1 : sideBar2) : (sideBarOpen.current ? sideBar1Dark : sideBar2Dark);
+        props.changeState(props.isLight ? sideBar3 : sideBar3Dark);
     }
   }
   
