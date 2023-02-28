@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import VideoSection from './components/videoSection/VideoSection'
 import Navbar from './components/navbar/Navbar'
-import Sidebar from './components/sidebar/Sidebar'
+import Sidebar from './components/Sidebar/Sidebar'
 import './index.css'
 
 const sideBar3 = {
