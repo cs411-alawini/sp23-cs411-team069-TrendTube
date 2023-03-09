@@ -87,3 +87,13 @@ CREATE TABLE Contains (
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
+CREATE TABLE RecommendsFrom (
+    watchedVideoId VARCHAR(100),
+    recommendedVideoId VARCHAR(100),
+    FOREIGN KEY(watchedVideoId) REFERENCES WatchedVideos(watchedVideoId)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+    FOREIGN KEY(recommendedVideoId) REFERENCES RecommendedVideos(recommendedVideoId)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+)
