@@ -129,7 +129,8 @@ CREATE TABLE RecommendsFrom (
 
 # Inserting Data
 
-![image](https://user-images.githubusercontent.com/90290549/224173781-714b6b13-56ac-4b13-ad43-16a18087df58.png)
+![image](https://user-images.githubusercontent.com/90290549/224178530-46b17323-e3cc-426d-bfdf-08d099b58669.png)
+
 
 
 
