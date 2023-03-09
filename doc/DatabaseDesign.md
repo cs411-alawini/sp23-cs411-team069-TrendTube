@@ -1,3 +1,6 @@
+# GCP Connection
+![image](https://user-images.githubusercontent.com/90290549/224167420-7d6e1ac6-9ed9-4622-bff7-ed4345fc02b7.png)
+
 # DDL Commands
 **Trending Video:**
 
