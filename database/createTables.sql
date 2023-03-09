@@ -96,4 +96,4 @@ CREATE TABLE RecommendsFrom (
     FOREIGN KEY(recommendedVideoId) REFERENCES RecommendedVideos(recommendedVideoId)
         ON DELETE CASCADE
         ON UPDATE CASCADE
-)
+);
