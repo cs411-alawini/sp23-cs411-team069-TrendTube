@@ -2,18 +2,17 @@ import React from 'react'
 import './navbar.css'
 import { MdOutlineDarkMode } from 'react-icons/md'
 import { HiSearch } from 'react-icons/hi'
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Axios from 'axios'
 
 function Navbar(props) {
-  const [lightOrDark, setLightOrDark] = useState(true);
+  const [lightOrDark, setLightOrDark] = useState(true); 
   let searchString = useRef('');
-  
-  Axios.post("http://localhost:4000/api/post/search", {
-    val: searchString
-  }).then((response) => {
-    console.log(response);
-  })
+
+  function updateSearchString(val) {
+    searchString.current = val.target.value;
+    console.log(searchString.current);
+  }
 
   return (
     <div className='navbar'>
@@ -22,8 +21,14 @@ function Navbar(props) {
         props.changeMode(!lightOrDark);
       }}><MdOutlineDarkMode/></button>
       <div className='searchBar'>
-        <input className='search' type='text' placeholder='Search'/>
-        <button className='submitSearch' onClick={()=>{}}><HiSearch/></button>
+        <input className='search' type='text' placeholder='Search' onChange= { updateSearchString }/>
+        <button className='submitSearch' onClick={()=>{ 
+          Axios.post("http://localhost:4000/api/post/search", {
+            val: searchString.current
+          }).then((response) => {
+            console.log(response);
+          });  
+        }}><HiSearch/></button>
       </div>
       <select className='lang'>
         <option value='eng'>eng</option>

@@ -1,1 +1,0 @@
-select count(video_id) from youtube_table;

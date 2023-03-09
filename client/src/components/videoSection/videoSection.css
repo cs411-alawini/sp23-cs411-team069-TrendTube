@@ -5,7 +5,13 @@
     flex-wrap: wrap;
     padding-top: 30px;
 }
-.videoSection embed {
+.Videos {
     margin: 5px;
+}
+.Videos embed {
     border-radius: 10px;
+}
+.Videos .bottomBar {
+    height: 50px;
+    width: 288px;
 }

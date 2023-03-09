@@ -64,6 +64,27 @@ app.post('/api/post/search', (req,res) => {
     res.send('Hello World!?!')
 });
 
+// POST Request: Create Data
+// @req -> getting info from frontend
+// @res -> sending info to frontend
+app.post('/api/post/save', (req,res) => {
+    res.send()
+});
+
+// POST Request: Create Data
+// @req -> getting info from frontend
+// @res -> sending info to frontend
+app.post('/api/post/like', (req,res) => {
+    res.send('Hello World!?!')
+});
+
+// POST Request: Create Data
+// @req -> getting info from frontend
+// @res -> sending info to frontend
+app.post('/api/post/dislike', (req,res) => {
+    res.send('Hello World!?!')
+});
+
 // PUT Request: Update Data else Create Data
 // @req -> getting info from frontend
 // @res -> sending info to frontend
