@@ -29,14 +29,18 @@ CREATE TABLE UserPlaylist (
     user_Id VARCHAR(100),
     playlistId VARCHAR(50),
     playlistName VARCHAR(50),
-    PRIMARY KEY (playlistId),
+    PRIMARY KEY (playlistId, user_Id),
     FOREIGN KEY(user_id) REFERENCES User(userId)
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
 CREATE TABLE Region (
     RegionName VARCHAR(50),
-    PRIMARY KEY (RegionName)
+    videoId VARCHAR(100),
+    PRIMARY KEY (RegionName),
+    FOREIGN KEY(videoId) REFERENCES Trending_Video(video_id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
 );
 CREATE TABLE Selects (
     user_Id VARCHAR(100),
@@ -52,7 +56,7 @@ CREATE TABLE RecommendedVideos (
     recommendedVideoId VARCHAR(100),
     user_Id VARCHAR(100),
     video_id VARCHAR(100),
-    PRIMARY KEY (recommendedVideoId),
+    PRIMARY KEY (recommendedVideoId, user_Id, video_id),
     FOREIGN KEY(user_Id) REFERENCES User(userId)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
@@ -65,7 +69,7 @@ CREATE TABLE WatchedVideos (
     WatchedDate DATETIME,
     user_Id VARCHAR(100),
     video_id VARCHAR(100),
-    PRIMARY KEY (watchedVideoId),
+    PRIMARY KEY (watchedVideoId, user_Id, video_id),
     FOREIGN KEY(user_Id) REFERENCES User(userId)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
@@ -80,16 +84,6 @@ CREATE TABLE Contains (
         ON DELETE CASCADE
         ON UPDATE CASCADE,
     FOREIGN KEY(video_id) REFERENCES Trending_Video(video_id)
-        ON DELETE CASCADE
-        ON UPDATE CASCADE
-);
-CREATE TABLE Trending_In (
-    video_id VARCHAR(100),
-    region_name VARCHAR(50),
-    FOREIGN KEY(video_id) REFERENCES Trending_Video(video_id)
-        ON DELETE CASCADE
-        ON UPDATE CASCADE,
-    FOREIGN KEY(region_name) REFERENCES Region(RegionName)
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
