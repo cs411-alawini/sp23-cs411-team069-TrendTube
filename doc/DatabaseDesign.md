@@ -134,10 +134,44 @@ CREATE TABLE RecommendsFrom (
 ![image](https://user-images.githubusercontent.com/90290549/224178530-46b17323-e3cc-426d-bfdf-08d099b58669.png)
 
 # Advanced Queries
+```
+use trendtube;
+/* returns all of the most popular videos by the community */
+SELECT channelTitle, SUM(likes)-SUM(dislikes) as popularity
+FROM trending_video
+GROUP BY channelTitle
+HAVING SUM(likes)-SUM(dislikes) > 500000
 
-![image](https://user-images.githubusercontent.com/110351173/224187039-be0d59fc-2aab-43db-ab78-c1af6b6f18ae.png)
+UNION 
+
+/* returns 20 of the most recent channels which uploaded videos */
+SELECT channelTitle, SUM(likes)-SUM(dislikes) as popularity
+FROM trending_video
+GROUP BY channelTitle
+HAVING channelTitle IN (
+	select channelTitle
+	from (select* from trending_video order by publishedAt desc limit 20) val
+);
+```
 ![image](https://user-images.githubusercontent.com/110351173/224187059-89c0dc06-7622-4435-8df1-94d574003af9.png)
-![image](https://user-images.githubusercontent.com/110351173/224187088-ac5b82e6-0d01-473e-ace9-d7554e9a20ed.png)
+```
+/* 
+	returns video_id of videos that user_Id="1" should watch 
+*/
+/* 
+	In our CRUD backend, we will replace the user_Id="1" with 
+    the user that is currently logged in to show the videos
+    they should watch
+*/
+SELECT video_id, title
+FROM trending_video
+WHERE channelTitle IN (SELECT channelTitle
+					   FROM watchedvideos w1 natural join trending_video t
+					   WHERE user_Id = "1") 
+      AND video_id NOT IN (SELECT video_id from watchedvideos WHERE user_Id = "1")
+ORDER BY likes DESC
+LIMIT 15
+```
 ![image](https://user-images.githubusercontent.com/110351173/224187103-576ba24c-edcc-4484-bfcd-45aeaf962b36.png)
 
 
