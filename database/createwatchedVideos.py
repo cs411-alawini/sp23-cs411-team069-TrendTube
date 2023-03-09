@@ -7,7 +7,7 @@ watched_table = pd.DataFrame(columns=[])
 now = datetime.datetime(2022, 5, 5)
 now.strftime('%Y-%m-%d %H:%M:%S')
 df = df['video_id']
-for x in range(1,1000):
+for x in range(1,1500):
     watchedVideoId = x
     user_id = random.randint(1, 1000)
     WatchedDate = now
