@@ -2,6 +2,7 @@
 ![image](https://user-images.githubusercontent.com/90290549/224167420-7d6e1ac6-9ed9-4622-bff7-ed4345fc02b7.png)
 
 # DDL Commands
+```
 **Trending Video:**
 
 CREATE TABLE Trending_Video (
@@ -126,10 +127,18 @@ CREATE TABLE RecommendsFrom (
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
+```
 
 # Inserting Data
 
 ![image](https://user-images.githubusercontent.com/90290549/224178530-46b17323-e3cc-426d-bfdf-08d099b58669.png)
+
+# Advanced Queries
+
+![image](https://user-images.githubusercontent.com/110351173/224187039-be0d59fc-2aab-43db-ab78-c1af6b6f18ae.png)
+![image](https://user-images.githubusercontent.com/110351173/224187059-89c0dc06-7622-4435-8df1-94d574003af9.png)
+![image](https://user-images.githubusercontent.com/110351173/224187088-ac5b82e6-0d01-473e-ace9-d7554e9a20ed.png)
+![image](https://user-images.githubusercontent.com/110351173/224187103-576ba24c-edcc-4484-bfcd-45aeaf962b36.png)
 
 
 
