@@ -134,6 +134,25 @@ CREATE TABLE RecommendsFrom (
 ![image](https://user-images.githubusercontent.com/90290549/224178530-46b17323-e3cc-426d-bfdf-08d099b58669.png)
 
 # Advanced Queries
+
+Query Explanation: When a user goes onto the trendtube webpage, he will immediately see a lot of videos that are
+either popular or most recently added videos which is shown by Query 1. Once the user logs in, he will also get
+videos that are recommended to him which have the same channels that the user has been watching from which is 
+shown by Query 2. Note for Query 2, there should be no videos that are both in recommended and watched because
+if a user has watched it, the video should not be recommended. Also note that for query 2, we did a mockup where
+we are only looking at the user whose user_Id="1". We will change this to match our backend. When our user
+hits the log in button, it will send an axios request from the frontend to the nodeJS backend, and nodeJS will
+call the database to send the new set of videos to the front end based on the userId.
+
+Query 1 filepath: 
+```
+../database/logoutVideos.sql
+```
+Query 2 filepath: 
+```
+../database/recommendedVideosForUser.sql
+```
+
 **Query 1:**
 ```
 use trendtube;
