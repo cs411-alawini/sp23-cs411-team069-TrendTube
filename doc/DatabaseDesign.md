@@ -134,6 +134,7 @@ CREATE TABLE RecommendsFrom (
 ![image](https://user-images.githubusercontent.com/90290549/224178530-46b17323-e3cc-426d-bfdf-08d099b58669.png)
 
 # Advanced Queries
+**Query 1:**
 ```
 use trendtube;
 /* returns all of the most popular videos by the community */
@@ -153,7 +154,10 @@ HAVING channelTitle IN (
 	from (select* from trending_video order by publishedAt desc limit 20) val
 );
 ```
+
 ![image](https://user-images.githubusercontent.com/110351173/224187059-89c0dc06-7622-4435-8df1-94d574003af9.png)
+
+**Query 2:**
 ```
 /* 
 	returns video_id of videos that user_Id="1" should watch 
@@ -173,6 +177,22 @@ ORDER BY likes DESC
 LIMIT 15
 ```
 ![image](https://user-images.githubusercontent.com/110351173/224187103-576ba24c-edcc-4484-bfcd-45aeaf962b36.png)
+
+# Indexing Analysis
+**Query 1 Pre Index Analysis:**
+![image](https://user-images.githubusercontent.com/90290549/224193866-7840703f-1e8a-444e-a1f8-b36aeaf85671.png)
+
+**Query 1 Index:**
+![image](https://user-images.githubusercontent.com/90290549/224193971-e5323657-2327-4fa1-8d07-566e9087a50f.png)
+![image](https://user-images.githubusercontent.com/90290549/224193982-bcde52ae-7cb1-4942-91f9-288e1a0fed18.png)
+
+**Query 1 Post Index Analysis:**
+![image](https://user-images.githubusercontent.com/90290549/224193924-46ea8745-12fd-4814-9cf1-6d5464059e14.png)
+
+**Query 2 Analysis:**
+![image](https://user-images.githubusercontent.com/90290549/224188268-4050c84c-2ef3-4bff-b277-a67f74819c8d.png)
+
+
 
 
 
