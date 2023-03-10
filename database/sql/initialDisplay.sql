@@ -1,2 +1,2 @@
 select *
-from (select* from youtube_table order by publishedAt desc limit 20) val
+from (select* from trending_video order by publishedAt desc limit 20) val

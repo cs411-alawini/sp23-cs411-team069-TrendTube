@@ -13,7 +13,7 @@ const db = mysql.createPool({
     host: 'localhost',
     user: 'root',
     password: 'password',
-    database: 'youtube'
+    database: 'trendtube'
 });
 
 
@@ -26,7 +26,7 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 //All Queries in string formats
-const allValues = fs.readFileSync('../database/sql/allValues.sql').toString();
+//const allValues = fs.readFileSync('../database/sql/allValues.sql').toString();
 const initialDisplay = fs.readFileSync('../database/sql/initialDisplay.sql').toString();
 
 // GET Request: Fetch Data
