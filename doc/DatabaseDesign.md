@@ -170,8 +170,8 @@ HAVING channelTitle IN (
 SELECT video_id, title
 FROM trending_video
 WHERE channelTitle IN (SELECT channelTitle
-					   FROM watchedvideos w1 natural join trending_video t
-					   WHERE user_Id = "1") 
+		       FROM watchedvideos w1 natural join trending_video t
+		       WHERE user_Id = "1") 
       AND video_id NOT IN (SELECT video_id from watchedvideos WHERE user_Id = "1")
 ORDER BY likes DESC
 LIMIT 15
