@@ -173,7 +173,7 @@ HAVING channelTitle IN (
 	from (select* from trending_video order by publishedAt desc limit 20) val
 );
 ```
-
+Output:
 ![image](https://user-images.githubusercontent.com/110351173/224187059-89c0dc06-7622-4435-8df1-94d574003af9.png)
 
 **Query 2:**
@@ -195,6 +195,7 @@ WHERE channelTitle IN (SELECT channelTitle
 ORDER BY likes DESC
 LIMIT 15
 ```
+Output:
 ![image](https://user-images.githubusercontent.com/110351173/224187103-576ba24c-edcc-4484-bfcd-45aeaf962b36.png)
 
 # Indexing Analysis
