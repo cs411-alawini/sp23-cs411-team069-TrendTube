@@ -189,8 +189,16 @@ LIMIT 15
 **Query 1 Post Index Analysis:**
 ![image](https://user-images.githubusercontent.com/90290549/224193924-46ea8745-12fd-4814-9cf1-6d5464059e14.png)
 
+**Query 1 Explanation:**
+
+For our first query, we could not index on the channel titles since there could be multiple trending videos from the same channel, which would cause a duplicate key error. So, the only other attribute we could index on was likes and dislikes, and we assumed no two videos had the same amount of likes or dislikes. Our index was successfully created, but as shown by the results above, there was no significant difference in the costs. Ultimately, we decided to use our original query as it was the most optimal.
+
 **Query 2 Analysis:**
 ![image](https://user-images.githubusercontent.com/90290549/224188268-4050c84c-2ef3-4bff-b277-a67f74819c8d.png)
+
+**Query 2 Explanation:**
+
+For our second query, we could not create any indexes since the query only referenced primary keys (which already have indexes). We still ran the "EXPLAIN ANALYZE" command, and the output is depicted above.  
 
 
 
