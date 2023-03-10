@@ -1,4 +1,21 @@
 # GCP Connection
+In order to connect to GCP and show our database and tables, we ran the following commands in our gcloud console:
+```
+gcloud sql connect youtube-data-instance --user=root
+```
+```
+show databases;
+```
+```
+use trendtube;
+```
+```
+show tables;
+```
+
+
+![image](https://user-images.githubusercontent.com/110351173/224215625-79d6ae7c-e9f9-4c64-9718-577e70f5c43a.png)
+
 ![image](https://user-images.githubusercontent.com/90290549/224167420-7d6e1ac6-9ed9-4622-bff7-ed4345fc02b7.png)
 
 # DDL Commands
