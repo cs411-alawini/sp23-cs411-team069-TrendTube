@@ -8,7 +8,8 @@ const sideBar3 = {
   height : '100vh',
   width : '82.5vw',
   backgroundColor : '#e2e9f7',
-  marginLeft: '17.5vw'
+  marginLeft: '17.5vw',
+  overflow: 'hidden'
 }
 
 
@@ -28,6 +29,7 @@ function App() {
       <div className='page'>
         <Sidebar isLight = { lightOrDark }
           changeState={(setState) => { 
+          console.log(setState);
           setRightState(setState);
         }}/>
         <div className='right' style={ rightState }>

@@ -123,7 +123,7 @@
     width: 25px;
     border-radius: 12.5px;
     border: none;
-    transform: translateX(1vw);
+    transform: translateX(0.75vw);
     background-color: rgba(111,98,244,255);
     color: white;
     font-size: 20px;

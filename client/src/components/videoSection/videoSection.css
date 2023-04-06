@@ -1,9 +1,9 @@
 .videoSection {
     height: 90vh;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
     padding-top: 30px;
+    overflow: hidden;
+    padding-left: 100px;
+    padding-right: 100px;
 }
 .Videos {
     margin: 5px;
@@ -14,4 +14,70 @@
 .Videos .bottomBar {
     height: 50px;
     width: 288px;
+}
+.like {
+    border: 0px;
+    border-radius: 20px;
+    padding-top: 2px;
+    width: 35px;
+    height: 35px;
+    background-color: white;
+    cursor: pointer;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+.dislike {
+    border: 0px;
+    border-radius: 20px;
+    padding-top: 2px;
+    width: 35px;
+    height: 35px;
+    background-color: white;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+.saved {
+    border: 0px;
+    border-radius: 20px;
+    padding-top: 2px;
+    width: 35px;
+    height: 35px;
+    background-color: white;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+.iconVid {
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 100;
+}
+.fullScreen {
+    border: 0px;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 1px;
+    font-weight: 300;
+    border-radius: 20px;
+    height: 33px;
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: white;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-top: 5px;    
+}
+.slick-slider.slick-initialized {
+    padding-left: 50px;
+}
+.slick-dots {
+    display: block !important; 
+    transform: translateX(-50px) !important;
+}
+.slick-arrow.slick-next,
+.slick-arrow.slick-prev {
+    display: block !important;
+    transform: translateY(-30px) !important;
 }

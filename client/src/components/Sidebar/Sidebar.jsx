@@ -8,6 +8,7 @@ import { FaSignOutAlt } from 'react-icons/fa'
 import { CgProfile } from 'react-icons/cg'
 import './sidebar.css'
 
+
 const sideBar1 = {
   height : '100vh',
   width : '17.5vw',
