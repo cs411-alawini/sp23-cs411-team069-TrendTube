@@ -5,6 +5,13 @@
     padding-left: 100px;
     padding-right: 100px;
 }
+.videoSection2 {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-left: 100px;
+    padding-right: 100px;
+}
 .Videos {
     margin: 5px;
 }

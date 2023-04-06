@@ -101,14 +101,12 @@ function VideoSection(props) {
 
   if (props.searchBool) {
     return (
-      <div className='videoSection'>
-        <Slider {...settings}>
+      <div className='videoSection2'>
           {props.searchData.data.map((val)=>{
             var string = "https://www.youtube.com/embed/" + val.video_id;
             var video_id = "" + val.video_id;
             return <Videos key={video_id} val={string} id={video_id}/>
           })}
-        </Slider>
       </div>
     )
   } else {
