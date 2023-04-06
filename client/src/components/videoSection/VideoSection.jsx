@@ -31,20 +31,12 @@ function Videos({val, id}) {
   )
 }
 
-/*
-<embed height="180px" width="288px" src={val.val}></embed>
-      <div className="bottomBar">
-        <button className='like' onClick={ handleSubmit("http://localhost:4000/api/post/like") }><AiOutlineLike className='iconVid'/></button>
-        <button className='dislike' onClick={ console.log("Nice") }><AiOutlineDislike className='iconVid'/></button>
-        <button className='saved' onClick={ console.log("Bye") }><FaRegHeart className='iconVid'/></button>
-        <button className='fullScreen' onClick={
-          console.log("enter fullscreen mode")
-        }>Full Screen</button>
-      </div>
-*/
 function VideoSection(props) {
   const [videos, setData] = useState([]);
   const [popular, setPopular] = useState([]);
+
+  console.log(props.searchBool);
+  console.log(props.searchData);
   // GET request only works on refresh
   useEffect(() => {
     Axios.get("http://localhost:4000/api/get/initialValues").then((req) => { 
@@ -68,15 +60,10 @@ function VideoSection(props) {
       for (var i = 0; i < list.length; i++) {
         list2.push(req.data[list[i]]);
       }
-      setPopular(list2);
-      console.log(list2.length);
-      console.log(list2);
-      
+      setPopular(list2);      
     }).catch((err) => { console.log(err); });
   },[]);
   
-
-
   var settings = {
     dots: false,
     infinite: false,
@@ -112,29 +99,39 @@ function VideoSection(props) {
     ]
   };
 
-  //<Slider {...settings}>
-//</Slider>
-
-  return (
-    <div className='videoSection'>
-      <Slider {...settings}>
-        {popular.map((val)=>{
-          var string = "https://www.youtube.com/embed/" + val;
-          console.log(string);
-          var video_id = "" + val;
-          return <Videos key={video_id} val={string} id={video_id}/>
-        })}
-      </Slider>
-      <br/><br/><br/>
-      <Slider {...settings}>
-        {videos.map((val)=>{
-          var string = "https://www.youtube.com/embed/" + val.video_id;
-          var video_id = "" + val.video_id;
-          return <Videos key={video_id} val={string} id={video_id}/>
-        })}
-      </Slider>
-    </div>
-  )
+  if (props.searchBool) {
+    return (
+      <div className='videoSection'>
+        <Slider {...settings}>
+          {props.searchData.data.map((val)=>{
+            var string = "https://www.youtube.com/embed/" + val.video_id;
+            var video_id = "" + val.video_id;
+            return <Videos key={video_id} val={string} id={video_id}/>
+          })}
+        </Slider>
+      </div>
+    )
+  } else {
+    return (
+      <div className='videoSection'>
+        <Slider {...settings}>
+          {popular.map((val)=>{
+            var string = "https://www.youtube.com/embed/" + val;
+            var video_id = "" + val;
+            return <Videos key={video_id} val={string} id={video_id}/>
+          })}
+        </Slider>
+        <br/><br/><br/>
+        <Slider {...settings}>
+          {videos.map((val)=>{
+            var string = "https://www.youtube.com/embed/" + val.video_id;
+            var video_id = "" + val.video_id;
+            return <Videos key={video_id} val={string} id={video_id}/>
+          })}
+        </Slider>
+      </div>
+    )
+  }
 }
 
 export default VideoSection

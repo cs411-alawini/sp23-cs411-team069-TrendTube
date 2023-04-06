@@ -27,9 +27,9 @@ app.use((req, res, next) => {
 
 //All Queries in string formats
 //const allValues = fs.readFileSync('../database/sql/allValues.sql').toString();
-const initialDisplay = fs.readFileSync('../database/sql/initialDisplay.sql').toString();
-const popularChannels = fs.readFileSync('../database/sql/logoutVideos.sql').toString();
-const popularVids_2023 = fs.readFileSync('../database/sql/2023Popular.sql').toString();
+const initialDisplay = fs.readFileSync('../database/sql/basicQueries/initialDisplay.sql').toString();
+const popularChannels = fs.readFileSync('../database/sql/advancedQuery/logoutVideos.sql').toString();
+const popularVids_2023 = fs.readFileSync('../database/sql/advancedQuery/2023Popular.sql').toString();
 
 // GET Request: Fetch Data
 // @req -> getting info from frontend
@@ -96,7 +96,31 @@ app.get('/api/get/allValues', (req,res) => {
 // @req -> getting info from frontend
 // @res -> sending info to frontend
 app.post('/api/post/search', (req,res) => {
-    res.send(req.ID);
+    const val = 
+    `
+     SELECT *
+     FROM trending_video
+     WHERE video_id LIKE "%` + req.body.val + `%" 
+           OR title LIKE "%` + req.body.val + `%" 
+           OR publishedAt LIKE "%` + req.body.val + `%"
+           OR channelId LIKE "%` + req.body.val + `%"
+           OR channelTitle LIKE "%` + req.body.val + `%"
+           OR categoryId LIKE "%` + req.body.val + `%"
+           OR trending_date LIKE "%` + req.body.val + `%"
+           OR tags LIKE "%` + req.body.val + `%"
+           OR thumbnail_link LIKE "%` + req.body.val + `%"
+           OR description LIKE "%` + req.body.val + `%"
+    `
+    console.log(req.body.val);
+    db.query(val, (err, result) => {
+        if (err) {
+            console.log(err)
+        } else {
+            console.log(result);
+            res.send(result);
+        }
+    });
+    console.log(val);
 });
 
 // POST Request: Create Data

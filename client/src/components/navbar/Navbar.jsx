@@ -11,7 +11,6 @@ function Navbar(props) {
   
   function updateSearchString(val) {
     searchString.current = val.target.value;
-    console.log(searchString.current);
   }
 
   return (
@@ -23,11 +22,17 @@ function Navbar(props) {
       <div className='searchBar'>
         <input className='search' type='text' placeholder='Search' onChange= { updateSearchString }/>
         <button className='submitSearch' onClick={()=>{ 
-          Axios.post("http://localhost:4000/api/post/search", JSON.stringify({ val: searchString.current }), {
+          if (searchString.current.trim() === "") {
+            props.setSearch(JSON.stringify([]));
+          } else {
+            Axios.post("http://localhost:4000/api/post/search", JSON.stringify({ val: searchString.current.trim() }), {
             headers: {
               'Content-Type': 'application/json'
             }
-          }).then((response) => {console.log(response)});
+            }).then((response) => { 
+              props.setSearch(response);
+            });
+          }
         }}><HiSearch/></button>
       </div>
       <select className='lang'>

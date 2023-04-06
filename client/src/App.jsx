@@ -16,13 +16,19 @@ const sideBar3 = {
 function App() {
   const [rightState, setRightState] = useState(sideBar3);
   const [lightOrDark, setLightOrDark] = useState(true);
+  const [searchData, setSearchData] = useState([]);
+  const [renderSearch, setSearchRender] = useState(false);
 
   useEffect(() => {
     document.body.style.backgroundColor = lightOrDark ? '#e2e9f7' : '#161818';
   },[lightOrDark])
 
-  console.log(lightOrDark);
-  console.log(rightState);
+  /*
+  useEffect(() => {
+    console.log(searchData);
+    console.log(renderSearch);
+  },[searchData])
+  */
 
   return (
     <>
@@ -33,8 +39,15 @@ function App() {
           setRightState(setState);
         }}/>
         <div className='right' style={ rightState }>
-          <Navbar changeMode={(setMode)=>{setLightOrDark(setMode)}}/>
-          <VideoSection isLight = { lightOrDark }/>
+          <Navbar setSearch={(searchString) => { 
+            setSearchData(searchString);
+            if (searchString === "[]") {
+              setSearchRender(false);
+            } else {
+              setSearchRender(true);
+            }
+          }} changeMode={(setMode) => { setLightOrDark(setMode) }}/>
+          <VideoSection searchBool = { renderSearch } searchData = { searchData }/>
         </div>
       </div>
     </>
