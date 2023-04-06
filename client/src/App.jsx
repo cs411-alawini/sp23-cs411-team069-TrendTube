@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import VideoSection from './components/videoSection/VideoSection'
 import Navbar from './components/navbar/Navbar'
 import Sidebar from './components/Sidebar/Sidebar'
+import Axios from 'axios'
 import './index.css'
 
 const sideBar3 = {
@@ -18,17 +19,26 @@ function App() {
   const [lightOrDark, setLightOrDark] = useState(true);
   const [searchData, setSearchData] = useState([]);
   const [renderSearch, setSearchRender] = useState(false);
+  const [userData, setUserData] = useState(null);
 
   useEffect(() => {
     document.body.style.backgroundColor = lightOrDark ? '#e2e9f7' : '#161818';
   },[lightOrDark])
 
-  /*
-  useEffect(() => {
-    console.log(searchData);
-    console.log(renderSearch);
-  },[searchData])
-  */
+  const loggedOut = (val) => {
+    if (val === false) {
+      setUserData(null);
+    }
+  }
+
+  const searchDatabase = (searchString) => { 
+    setSearchData(searchString);
+    if (searchString === "[]") {
+      setSearchRender(false);
+    } else {
+      setSearchRender(true);
+    }
+  }
 
   return (
     <>
@@ -39,14 +49,7 @@ function App() {
           setRightState(setState);
         }}/>
         <div className='right' style={ rightState }>
-          <Navbar setSearch={(searchString) => { 
-            setSearchData(searchString);
-            if (searchString === "[]") {
-              setSearchRender(false);
-            } else {
-              setSearchRender(true);
-            }
-          }} changeMode={(setMode) => { setLightOrDark(setMode) }}/>
+          <Navbar setSearch={ searchDatabase } changeMode={(setMode) => { setLightOrDark(setMode) }} userInfo = { userData } logoutStatus = { loggedOut } />
           <VideoSection searchBool = { renderSearch } searchData = { searchData }/>
         </div>
       </div>

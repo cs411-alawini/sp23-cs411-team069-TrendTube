@@ -123,6 +123,32 @@ app.post('/api/post/search', (req,res) => {
     console.log(val);
 });
 
+// <------------  USER CREATION --------------> 
+
+
+// POST Request: Create User
+// @req -> getting info from frontend
+// @res -> sending info to frontend
+app.put('/api/put', (req,res) => {
+    console.log(req);
+});
+
+// PUT Request: Update User Data
+// @req -> getting info from frontend
+// @res -> sending info to frontend
+app.put('/api/put', (req,res) => {
+    console.log(req);
+});
+
+// DELETE Request: Delete User
+// @req -> getting info from frontend
+// @res -> sending info to frontend
+app.delete('/api/delete', (req,res) => {
+    console.log(req);
+});
+
+// <------------  USER-VIDEO INTERACTION --------------> 
+
 // POST Request: Create Data
 // @req -> getting info from frontend
 // @res -> sending info to frontend
@@ -143,20 +169,6 @@ app.post('/api/post/like', (req,res) => {
 // @res -> sending info to frontend
 app.post('/api/post/dislike', (req,res) => {
     res.send(req.body.ID);
-});
-
-// PUT Request: Update Data else Create Data
-// @req -> getting info from frontend
-// @res -> sending info to frontend
-app.put('/api/put', (req,res) => {
-    console.log(req);
-});
-
-// DELETE Request: Delete Data
-// @req -> getting info from frontend
-// @res -> sending info to frontend
-app.delete('/api/delete', (req,res) => {
-    console.log(req);
 });
 
 //Our local host is running on port 4000
