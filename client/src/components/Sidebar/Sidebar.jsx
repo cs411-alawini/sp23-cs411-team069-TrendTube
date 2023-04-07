@@ -121,7 +121,7 @@ function Sidebar(props) {
             <button className='History' onClick={()=>{ props.changeSidebar('History'); props.setSearch("[]");  }}><BiHistory className='icon'/>{ history.current }</button>
             <button className='Playlist' onClick={()=>{ props.changeSidebar('Playlist'); props.setSearch("[]");  }}><MdPlaylistAdd className='icon'/>{ playlist.current }</button>
             <button className='Profile' onClick={()=>{ props.changeSidebar('Profile'); props.setSearch("[]");  }}><CgProfile className='icon'/>{ profile.current }</button>
-            <button className='SignOut' onClick={() => { props.logoutStatus(false) }}><FaSignOutAlt className='icon'/>{ signOut.current }</button>
+            <button className='SignOut' onClick={() => { props.logoutStatus(false); props.setSearch("[]");  }}><FaSignOutAlt className='icon'/>{ signOut.current }</button>
 
         </div>
         <div className='button'>
