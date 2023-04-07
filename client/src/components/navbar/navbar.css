@@ -61,3 +61,23 @@
     background-color: white;
     cursor: pointer;
 }
+.welcome {
+    margin-top: 3vh;
+    width: 25%;
+    display: flex;
+    justify-content: right;  
+}
+.welcome h1 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    height: 25px;
+    background-color: rgba(111,98,244,255);
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: fit-content;
+    border-radius: 40px;
+}

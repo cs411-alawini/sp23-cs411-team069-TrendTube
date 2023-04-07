@@ -30,6 +30,8 @@ app.use((req, res, next) => {
 const initialDisplay = fs.readFileSync('../database/sql/basicQueries/initialDisplay.sql').toString();
 const popularChannels = fs.readFileSync('../database/sql/advancedQuery/logoutVideos.sql').toString();
 const popularVids_2023 = fs.readFileSync('../database/sql/advancedQuery/2023Popular.sql').toString();
+const checkUser = fs.readFileSync('../database/sql/userInfoQueries/checkUser.sql').toString();
+const insertUser = fs.readFileSync('../database/sql/userInfoQueries/insertUser.sql').toString();
 
 // GET Request: Fetch Data
 // @req -> getting info from frontend
@@ -125,26 +127,60 @@ app.post('/api/post/search', (req,res) => {
 
 // <------------  USER CREATION --------------> 
 
+// POST Request: Check User
+// @req -> getting info from frontend
+// @res -> sending info to frontend
+app.post('/api/post/checkUser', (req,res) => {
+    db.query(checkUser, [req.body.username, req.body.password], (err, result) => {
+        if (err) {
+            console.log(err)
+        } else {
+            console.log(result);
+            res.send(result);
+        }
+    });
+});
+
 
 // POST Request: Create User
 // @req -> getting info from frontend
 // @res -> sending info to frontend
-app.put('/api/put', (req,res) => {
-    console.log(req);
+app.post('/api/post/createUser', (req,res) => {
+    var getValues = 'SELECT * FROM user'
+    db.query(getValues, (err, result) => {
+        if (err) {
+            console.log(err)
+        } else {
+            var max = 0;
+            for (var i = 0; i < result.length; i++) {
+                if (result[i].userId > max) {
+                    max = result[i].userId;
+                }
+            }
+            db.query(insertUser, [max + 1, req.body.username, req.body.password, req.body.email], (err, result) => {
+                if (err) {
+                    console.log(err)
+                } else {
+                    console.log(result);
+                    res.send("User: " + req.body.username + " Password: " + req.body.password);
+                }
+            });
+        }
+    })
 });
 
 // PUT Request: Update User Data
 // @req -> getting info from frontend
 // @res -> sending info to frontend
-app.put('/api/put', (req,res) => {
-    console.log(req);
+app.put('/api/put/updateUser', (req,res) => {
+    res.send(req.body);
 });
 
 // DELETE Request: Delete User
 // @req -> getting info from frontend
 // @res -> sending info to frontend
-app.delete('/api/delete', (req,res) => {
-    console.log(req);
+app.delete('/api/delete/deleteUser', (req,res) => {
+    res.send(req.body);
 });
 
 // <------------  USER-VIDEO INTERACTION --------------> 

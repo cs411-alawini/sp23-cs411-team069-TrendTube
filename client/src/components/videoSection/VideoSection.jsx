@@ -35,7 +35,6 @@ function VideoSection(props) {
   const [videos, setData] = useState([]);
   const [popular, setPopular] = useState([]);
 
-  console.log(props.searchBool);
   console.log(props.searchData);
   // GET request only works on refresh
   useEffect(() => {
@@ -99,6 +98,8 @@ function VideoSection(props) {
     ]
   };
 
+  console.log(props.searchBool);
+
   if (props.searchBool) {
     return (
       <div className='videoSection2'>
@@ -110,25 +111,47 @@ function VideoSection(props) {
       </div>
     )
   } else {
-    return (
-      <div className='videoSection'>
-        <Slider {...settings}>
-          {popular.map((val)=>{
-            var string = "https://www.youtube.com/embed/" + val;
-            var video_id = "" + val;
-            return <Videos key={video_id} val={string} id={video_id}/>
-          })}
-        </Slider>
-        <br/><br/><br/>
-        <Slider {...settings}>
-          {videos.map((val)=>{
-            var string = "https://www.youtube.com/embed/" + val.video_id;
-            var video_id = "" + val.video_id;
-            return <Videos key={video_id} val={string} id={video_id}/>
-          })}
-        </Slider>
-      </div>
-    )
+    if (props.pageState === "Main") {
+      return (
+        <div className='videoSection'>
+          <Slider {...settings}>
+            {popular.map((val)=>{
+              var string = "https://www.youtube.com/embed/" + val;
+              var video_id = "" + val;
+              return <Videos key={video_id} val={string} id={video_id}/>
+            })}
+          </Slider>
+          <br/><br/><br/>
+          <Slider {...settings}>
+            {videos.map((val)=>{
+              var string = "https://www.youtube.com/embed/" + val.video_id;
+              var video_id = "" + val.video_id;
+              return <Videos key={video_id} val={string} id={video_id}/>
+            })}
+          </Slider>
+        </div>
+      )
+    } else if (props.pageState === "Saved") {
+      return (
+        <>
+        </>
+      )
+    } else if (props.pageState === "History") {
+      return (
+        <>
+        </>
+      )
+    } else if (props.pageState === "Playlist") {
+      return (
+        <>
+        </>
+      )
+    } else if (props.pageState === "Profile") {
+      return (
+        <>
+        </>
+      )
+    }
   }
 }
 

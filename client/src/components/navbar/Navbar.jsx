@@ -42,6 +42,9 @@ function Navbar(props) {
         <option value='fra'>fra</option>
         <option value='chi'>chi</option>
       </select>
+      <div className='welcome'>
+        <h1>Welcome {props.userInfo.data[0].userName}</h1>
+      </div>
     </div>
   )
 }

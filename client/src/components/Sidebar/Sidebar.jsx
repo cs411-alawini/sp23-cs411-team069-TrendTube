@@ -57,7 +57,6 @@ const sideBar4Dark = {
 
 function Sidebar(props) {
   let sideBarOpen = useRef(true);
-  const [Page, setPage] = useState('Main');
 
   let arrow = useRef(<HiArrowSmLeft/>);
   let title = useRef('rendtube');
@@ -68,10 +67,6 @@ function Sidebar(props) {
   let signOut = useRef('Sign Out');
   let profile = useRef('Profile');
   let sidebarSetting = useRef(sideBar1);
-
-  function changePage(param) { 
-    setPage(param); 
-  }
 
   useEffect(() => {
     sidebarSetting.current = props.isLight ? (sideBarOpen.current ? sideBar1 : sideBar2) : (sideBarOpen.current ? sideBar1Dark : sideBar2Dark);
@@ -121,12 +116,12 @@ function Sidebar(props) {
 
         </div>
         <div className='options'>
-            <button className='Main' onClick={()=>{ changePage('Main'); }}><BiHomeAlt className='icon'/>{ main.current }</button>
-            <button className='Saved' onClick={()=>{ changePage('Saved') }}><FiBookmark className='icon'/>{ saved.current }</button>
-            <button className='History' onClick={()=>{ changePage('History') }}><BiHistory className='icon'/>{ history.current }</button>
-            <button className='Playlist' onClick={()=>{ changePage('Playlist') }}><MdPlaylistAdd className='icon'/>{ playlist.current }</button>
-            <button className='Profile' onClick={()=>{ changePage('Profile') }}><CgProfile className='icon'/>{ profile.current }</button>
-            <button className='SignOut' onClick={() => {}}><FaSignOutAlt className='icon'/>{ signOut.current }</button>
+            <button className='Main' onClick={()=>{ props.changeSidebar('Main'); props.setSearch("[]"); }}><BiHomeAlt className='icon'/>{ main.current }</button>
+            <button className='Saved' onClick={()=>{ props.changeSidebar('Saved'); props.setSearch("[]"); }}><FiBookmark className='icon'/>{ saved.current }</button>
+            <button className='History' onClick={()=>{ props.changeSidebar('History'); props.setSearch("[]");  }}><BiHistory className='icon'/>{ history.current }</button>
+            <button className='Playlist' onClick={()=>{ props.changeSidebar('Playlist'); props.setSearch("[]");  }}><MdPlaylistAdd className='icon'/>{ playlist.current }</button>
+            <button className='Profile' onClick={()=>{ props.changeSidebar('Profile'); props.setSearch("[]");  }}><CgProfile className='icon'/>{ profile.current }</button>
+            <button className='SignOut' onClick={() => { props.logoutStatus(false) }}><FaSignOutAlt className='icon'/>{ signOut.current }</button>
 
         </div>
         <div className='button'>
