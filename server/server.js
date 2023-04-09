@@ -33,6 +33,7 @@ const popularVids_2023 = fs.readFileSync('../database/sql/advancedQuery/2023Popu
 const checkUser = fs.readFileSync('../database/sql/userInfoQueries/checkUser.sql').toString();
 const insertUser = fs.readFileSync('../database/sql/userInfoQueries/insertUser.sql').toString();
 const search = fs.readFileSync('../database/sql/basicQueries/searchBar.sql').toString();
+const deleteUser = fs.readFileSync('../database/sql/userInfoQueries/deleteUser.sql').toString();
 
 // GET Request: Fetch Data
 // @req -> getting info from frontend
@@ -183,7 +184,13 @@ app.put('/api/put/updateUserPassword', (req,res) => {
 // @res -> sending info to frontend
 app.delete('/api/delete/deleteUser/:userData', (req,res) => {
     var userId = req.params.userData;
-    res.send(userId);
+    db.query(deleteUser, [userId], (err, result) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.send("Deleted User");
+        }
+    });
 });
 
 // <------------  USER-VIDEO INTERACTION --------------> 
