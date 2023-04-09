@@ -32,6 +32,7 @@ const popularChannels = fs.readFileSync('../database/sql/advancedQuery/logoutVid
 const popularVids_2023 = fs.readFileSync('../database/sql/advancedQuery/2023Popular.sql').toString();
 const checkUser = fs.readFileSync('../database/sql/userInfoQueries/checkUser.sql').toString();
 const insertUser = fs.readFileSync('../database/sql/userInfoQueries/insertUser.sql').toString();
+const search = fs.readFileSync('../database/sql/basicQueries/searchBar.sql').toString();
 
 // GET Request: Fetch Data
 // @req -> getting info from frontend
@@ -98,31 +99,15 @@ app.get('/api/get/allValues', (req,res) => {
 // @req -> getting info from frontend
 // @res -> sending info to frontend
 app.post('/api/post/search', (req,res) => {
-    const val = 
-    `
-     SELECT *
-     FROM trending_video
-     WHERE video_id LIKE "%` + req.body.val + `%" 
-           OR title LIKE "%` + req.body.val + `%" 
-           OR publishedAt LIKE "%` + req.body.val + `%"
-           OR channelId LIKE "%` + req.body.val + `%"
-           OR channelTitle LIKE "%` + req.body.val + `%"
-           OR categoryId LIKE "%` + req.body.val + `%"
-           OR trending_date LIKE "%` + req.body.val + `%"
-           OR tags LIKE "%` + req.body.val + `%"
-           OR thumbnail_link LIKE "%` + req.body.val + `%"
-           OR description LIKE "%` + req.body.val + `%"
-    `
-    console.log(req.body.val);
-    db.query(val, (err, result) => {
+    const data = req.body.val
+
+    db.query(search, ["%" + data + "%", "%" + data + "%", "%" + data + "%", "%" + data + "%", "%" + data + "%", "%" + data + "%", "%" + data + "%", "%" + data + "%", "%" + data + "%", "%" + data + "%"], (err, result) => {
         if (err) {
             console.log(err)
         } else {
-            console.log(result);
             res.send(result);
         }
     });
-    console.log(val);
 });
 
 // <------------  USER CREATION --------------> 
@@ -135,8 +120,11 @@ app.post('/api/post/checkUser', (req,res) => {
         if (err) {
             console.log(err)
         } else {
-            console.log(result);
-            res.send(result);
+            if (result.length == 0) {
+                res.send("null");
+            } else {
+                res.send(result);
+            }
         }
     });
 });
@@ -172,15 +160,30 @@ app.post('/api/post/createUser', (req,res) => {
 // PUT Request: Update User Data
 // @req -> getting info from frontend
 // @res -> sending info to frontend
-app.put('/api/put/updateUser', (req,res) => {
+app.put('/api/put/updateUserEmail', (req,res) => {
+    res.send(req.body);
+});
+
+// PUT Request: Update User Data
+// @req -> getting info from frontend
+// @res -> sending info to frontend
+app.put('/api/put/updateUsername', (req,res) => {
+    res.send(req.body);
+});
+
+// PUT Request: Update User Data
+// @req -> getting info from frontend
+// @res -> sending info to frontend
+app.put('/api/put/updateUserPassword', (req,res) => {
     res.send(req.body);
 });
 
 // DELETE Request: Delete User
 // @req -> getting info from frontend
 // @res -> sending info to frontend
-app.delete('/api/delete/deleteUser', (req,res) => {
-    res.send(req.body);
+app.delete('/api/delete/deleteUser/:userData', (req,res) => {
+    var userId = req.params.userData;
+    res.send(userId);
 });
 
 // <------------  USER-VIDEO INTERACTION --------------> 
@@ -189,6 +192,7 @@ app.delete('/api/delete/deleteUser', (req,res) => {
 // @req -> getting info from frontend
 // @res -> sending info to frontend
 app.post('/api/post/save', (req,res) => {
+    // Table: WatchedVideo(watchedVideoID INT [PK], trendingVideoID VARCHAR(11) [FK to TrendingVideo.videoID], userID INT [FK to User.userID], watchedDate DATE)
     res.send(req.body.ID);
 });
 
@@ -196,6 +200,8 @@ app.post('/api/post/save', (req,res) => {
 // @req -> getting info from frontend
 // @res -> sending info to frontend
 app.post('/api/post/like', (req,res) => {
+    // Table: RecommendsFrom(watchedVideoID INT, recommendedVideoID INT)
+    // Table: RecommendedVideo(recommendedVideoID INT [PK], trendingVideoID VARCHAR(11) [FK to TrendingVideo.videoID], userID INT [FK to User.userID])
     console.log(req.body.ID);
     res.send(req.body.ID);
 });
@@ -204,6 +210,38 @@ app.post('/api/post/like', (req,res) => {
 // @req -> getting info from frontend
 // @res -> sending info to frontend
 app.post('/api/post/dislike', (req,res) => {
+    res.send(req.body.ID);
+});
+
+// POST Request: Create Data
+// @req -> getting info from frontend
+// @res -> sending info to frontend
+app.post('/api/post/addToPlaylist', (req,res) => {
+    // Table: Contains(trendingVideoID VARCHAR(11), playlistID INT)
+    res.send(req.body.ID);
+});
+
+// POST Request: Create Data
+// @req -> getting info from frontend
+// @res -> sending info to frontend
+app.delete('/api/post/deleteFromPlaylist', (req,res) => {
+    // Table: Contains(trendingVideoID VARCHAR(11), playlistID INT)
+    res.send(req.body.ID);
+});
+
+// POST Request: Create Data
+// @req -> getting info from frontend
+// @res -> sending info to frontend
+app.post('/api/post/createPlaylist', (req,res) => {
+    // Table: UserPlaylist(playlistID INT [PK], userID INT [FK to User.userID], playlistName VARCHAR(30))
+    res.send(req.body.ID);
+});
+
+// POST Request: Create Data
+// @req -> getting info from frontend
+// @res -> sending info to frontend
+app.delete('/api/post/deletePlaylist', (req,res) => {
+    // Table: UserPlaylist(playlistID INT [PK], userID INT [FK to User.userID], playlistName VARCHAR(30))
     res.send(req.body.ID);
 });
 

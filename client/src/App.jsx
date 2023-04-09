@@ -55,8 +55,11 @@ function App() {
         'Content-Type': 'application/json'
       }
     }).then((response) => {
-      console.log(response);
-      setUserData(response);
+      console.log(JSON.stringify(response));
+      if (JSON.stringify(response.data) !== "") {
+        console.log("hey");
+        setUserData(response);
+      }
     });
   }
 
@@ -70,6 +73,8 @@ function App() {
       console.log(response);
     });
   }
+
+  console.log(userData);
 
   if (userData === null) {
     return (
@@ -109,7 +114,7 @@ function App() {
           />
           <div className='right' style={ rightState }>
             <Navbar setSearch={ searchDatabase } changeMode={(setMode) => { setLightOrDark(setMode) }} userInfo = { userData } />
-            <VideoSection searchBool = { renderSearch } searchData = { searchData } pageState = { sidebarState }/>
+            <VideoSection userInfo = { userData } searchBool = { renderSearch } searchData = { searchData } pageState = { sidebarState } logoutStatus = { loggedOut }/>
           </div>
         </div>
       </>

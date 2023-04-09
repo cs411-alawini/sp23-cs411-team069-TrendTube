@@ -15,7 +15,7 @@
 .Videos {
     margin: 5px;
 }
-.Videos embed {
+.Videos iframe {
     border-radius: 10px;
 }
 .Videos .bottomBar {

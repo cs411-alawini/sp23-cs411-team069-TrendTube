@@ -7,9 +7,9 @@ import Axios from 'axios'
 import { AiOutlineDislike, AiOutlineLike } from 'react-icons/ai'
 import { FaRegHeart } from 'react-icons/fa'
 import Slider from 'react-slick'
+import Profile from './Profile/Profile';
 
 function Videos({val, id}) {
-
   const handleSubmit = (link) => {
     Axios.post(link, JSON.stringify({ ID: id }), {
       headers: {
@@ -20,7 +20,7 @@ function Videos({val, id}) {
 
   return (
     <div className='Videos'>
-      <embed height="180px" width="288px" src={val}></embed>
+      <iframe height="180px" width="288px" src={val}></iframe>
       <div className="bottomBar">
         <button className='like' onClick={() => { handleSubmit("http://localhost:4000/api/post/like") }}><AiOutlineLike className='iconVid'/></button>
         <button className='dislike' onClick={() => { handleSubmit("http://localhost:4000/api/post/dislike") }}><AiOutlineDislike className='iconVid'/></button>
@@ -134,6 +134,7 @@ function VideoSection(props) {
     } else if (props.pageState === "Saved") {
       return (
         <>
+        
         </>
       )
     } else if (props.pageState === "History") {
@@ -149,6 +150,7 @@ function VideoSection(props) {
     } else if (props.pageState === "Profile") {
       return (
         <>
+          <Profile userDeleted={(val) => {props.logoutStatus(val)}} userData = { props.userInfo }/>
         </>
       )
     }

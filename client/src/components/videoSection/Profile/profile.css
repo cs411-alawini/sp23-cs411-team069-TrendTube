@@ -1,0 +1,48 @@
+.profile {
+    font-family: 'Poppins', sans-serif;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+}
+.profile-container {
+    height: 100%;
+    width: 90%;
+}
+.profile-inner-container {
+    width: 100%;
+    height: 90%;
+    margin-top: 2.5%;
+    padding-top: 7%;
+}
+.deleteProfile {
+    font-family: 'Poppins', sans-serif;
+    height: 50px;
+    width: 15%;
+    border-radius: 40px;
+    background-color: red;
+    border: none;
+    margin-left: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    color: white;
+}
+.profileInput {
+    font-family: 'Poppins', sans-serif;
+    height: 20px;
+    width: 80%;
+    padding: 15px;
+    border-radius: 40px;
+    border: none;
+    margin-top: 20px;
+}
+.profileButton {
+    font-family: 'Poppins', sans-serif;
+    height: 50px;
+    width: 15%;
+    border-radius: 40px;
+    background-color: white;
+    border: none;
+    margin-left: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
