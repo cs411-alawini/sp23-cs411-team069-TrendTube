@@ -128,7 +128,7 @@ app.post('/api/post/checkUser', (req,res) => {
             console.log(err)
         } else {
             if (result.length == 0) {
-                res.send("Invalid Credentials");
+                res.send("null");
             } else {
                 res.send(result);
             }
