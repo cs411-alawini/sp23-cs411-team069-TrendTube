@@ -56,7 +56,7 @@ function App() {
       }
     }).then((response) => {
       console.log(JSON.stringify(response));
-      if (JSON.stringify(response.data) !== "") {
+      if (JSON.stringify(response.data) !== "Invalid Credentials") {
         console.log("hey");
         setUserData(response);
       }
