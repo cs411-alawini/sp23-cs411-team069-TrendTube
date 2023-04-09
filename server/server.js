@@ -31,6 +31,8 @@ const initialDisplay = fs.readFileSync('../database/sql/basicQueries/initialDisp
 const popularChannels = fs.readFileSync('../database/sql/advancedQuery/logoutVideos.sql').toString();
 const popularVids_2023 = fs.readFileSync('../database/sql/advancedQuery/2023Popular.sql').toString();
 const checkUser = fs.readFileSync('../database/sql/userInfoQueries/checkUser.sql').toString();
+const checkUsername = fs.readFileSync('../database/sql/userInfoQueries/checkUsername.sql').toString();
+const checkEmail = fs.readFileSync('../database/sql/userInfoQueries/checkEmail.sql').toString();
 const insertUser = fs.readFileSync('../database/sql/userInfoQueries/insertUser.sql').toString();
 const search = fs.readFileSync('../database/sql/basicQueries/searchBar.sql').toString();
 const deleteUser = fs.readFileSync('../database/sql/userInfoQueries/deleteUser.sql').toString();
@@ -140,26 +142,43 @@ app.post('/api/post/checkUser', (req,res) => {
 // @res -> sending info to frontend
 app.post('/api/post/createUser', (req,res) => {
     var getValues = 'SELECT * FROM user'
-    db.query(getValues, (err, result) => {
+
+    db.query(checkEmail, [req.body.email], (err, result) => {
         if (err) {
             console.log(err)
+        } else if (result.length >= 1) {
+            res.send("Email Already Used")
         } else {
-            var max = 0;
-            for (var i = 0; i < result.length; i++) {
-                if (result[i].userId > max) {
-                    max = result[i].userId;
-                }
-            }
-            db.query(insertUser, [max + 1, req.body.username, req.body.password, req.body.email], (err, result) => {
-                if (err) {
-                    console.log(err)
+            db.query(checkUsername, [req.body.username], (err2, result2) => {
+                if (err2) {
+                    console.log(err2)
+                } else if (result2.length >= 1) {
+                    res.send("Username Already Exists")
                 } else {
-                    console.log(result);
-                    res.send("User: " + req.body.username + " Password: " + req.body.password);
+                    db.query(getValues, (err, result) => {
+                        if (err) {
+                            console.log(err)
+                        } else {
+                            var max = 0;
+                            for (var i = 0; i < result.length; i++) {
+                                if (result[i].userId > max) {
+                                    max = result[i].userId;
+                                }
+                            }
+                            db.query(insertUser, [max + 1, req.body.username, req.body.password, req.body.email], (err, result) => {
+                                if (err) {
+                                    console.log(err)
+                                } else {
+                                    console.log(result);
+                                    res.send("Account Created");
+                                }
+                            });
+                        }
+                    })
                 }
             });
         }
-    })
+    });
 });
 
 // PUT Request: Update User Data
