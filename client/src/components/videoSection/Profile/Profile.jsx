@@ -12,7 +12,7 @@ function Profile(props) {
     const updateUsername = (e) => {
         e.preventDefault();
         // make axios put request to update this user from the database
-        Axios.put("http://localhost:4000/api/put/updateUsername", JSON.stringify({ user:  props.userData }), {
+        Axios.put("http://localhost:4000/api/put/updateUsername", JSON.stringify({ user:  props.userData, usernameVal: username }), {
             headers: {
               'Content-Type': 'application/json'
             }
@@ -24,7 +24,7 @@ function Profile(props) {
     const updatePassword = (e) => {
         e.preventDefault();
         // make axios put request to update this user from the database
-        Axios.put("http://localhost:4000/api/put/updateUserPassword", JSON.stringify({ user: props.userData }), {
+        Axios.put("http://localhost:4000/api/put/updateUserPassword", JSON.stringify({ user: props.userData, passwordVal: password }), {
             headers: {
               'Content-Type': 'application/json'
             }
@@ -36,7 +36,7 @@ function Profile(props) {
     const updateEmail = (e) => {
         e.preventDefault();
         // make axios put request to update this user from the database
-        Axios.put("http://localhost:4000/api/put/updateUserEmail", JSON.stringify({ user: props.userData }), {
+        Axios.put("http://localhost:4000/api/put/updateUserEmail", JSON.stringify({ user: props.userData, emailVal: email }), {
             headers: {
               'Content-Type': 'application/json'
             }

@@ -34,6 +34,10 @@ const checkUser = fs.readFileSync('../database/sql/userInfoQueries/checkUser.sql
 const insertUser = fs.readFileSync('../database/sql/userInfoQueries/insertUser.sql').toString();
 const search = fs.readFileSync('../database/sql/basicQueries/searchBar.sql').toString();
 const deleteUser = fs.readFileSync('../database/sql/userInfoQueries/deleteUser.sql').toString();
+const updateUsername = fs.readFileSync('../database/sql/userInfoQueries/updateUsername.sql').toString();
+const updateEmail = fs.readFileSync('../database/sql/userInfoQueries/updateEmail.sql').toString();
+const updatePassword = fs.readFileSync('../database/sql/userInfoQueries/updatePassword.sql').toString();
+
 
 // GET Request: Fetch Data
 // @req -> getting info from frontend
@@ -162,21 +166,45 @@ app.post('/api/post/createUser', (req,res) => {
 // @req -> getting info from frontend
 // @res -> sending info to frontend
 app.put('/api/put/updateUserEmail', (req,res) => {
-    res.send(req.body);
+    console.log(req.body.user.data[0].userId);
+    db.query(updateEmail, [req.body.emailVal, req.body.user.data[0].userId], (err, result) => {
+        if (err) {
+            console.log(err)
+        } else {
+            console.log(result);
+            res.send(req.body.user.data[0].userEmail)
+        }
+    });
 });
 
 // PUT Request: Update User Data
 // @req -> getting info from frontend
 // @res -> sending info to frontend
 app.put('/api/put/updateUsername', (req,res) => {
-    res.send(req.body);
+    console.log(req.body.user.data[0].userId);
+    db.query(updateUsername, [req.body.usernameVal, req.body.user.data[0].userId], (err, result) => {
+        if (err) {
+            console.log(err)
+        } else {
+            console.log(result);
+            res.send(req.body.user.data[0].userName)
+        }
+    });
 });
 
 // PUT Request: Update User Data
 // @req -> getting info from frontend
 // @res -> sending info to frontend
 app.put('/api/put/updateUserPassword', (req,res) => {
-    res.send(req.body);
+    console.log(req.body.user.data[0].userId);
+    db.query(updatePassword, [req.body.passwordVal, req.body.user.data[0].userId], (err, result) => {
+        if (err) {
+            console.log(err)
+        } else {
+            console.log(result);
+            res.send(req.body.user.data[0].userPassword)
+        }
+    });
 });
 
 // DELETE Request: Delete User
