@@ -12,7 +12,7 @@ function Profile(props) {
     const updateUsername = (e) => {
         e.preventDefault();
         // make axios put request to update this user from the database
-        Axios.put("http://localhost:4000/api/put/updateUsername", JSON.stringify({ user:  props.userData, usernameVal: username }), {
+        Axios.put("http://localhost:4000/api/put/updateUsername", JSON.stringify({ user: props.userData, usernameVal: username }), {
             headers: {
               'Content-Type': 'application/json'
             }

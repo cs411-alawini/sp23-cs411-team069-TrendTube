@@ -1,0 +1,116 @@
+.Playlist-outer-container {
+    height: 80%;
+    display: flex;
+    justify-content: center;
+}
+.Playlist-container {
+    height: 100%;
+    width: 80%;
+}
+.Playlist-inner-container {
+    border: 1px solid black;
+    height: 50%;
+}                                                                                                      
+.Create-playlist {
+    display: flex;
+    width: 1150px;
+    flex-wrap: wrap;
+}
+.Create-Playlist-Container {
+    width: 464px;
+    height: 100%;
+}
+.playlist-input {
+    font-family: 'Poppins', sans-serif;
+    height: 20px;
+    width: 250px;
+    padding: 15px;
+    border-radius: 40px;
+    border: none;
+    margin-top: 20px;
+    margin-left: 3%;
+}
+.playlist-submit-button {
+    font-family: 'Poppins', sans-serif;
+    height: 50px;
+    width: 150px;
+    border-radius: 40px;
+    background-color: white;
+    border: none;
+    margin-left: 20px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+.selectPlaylist-delete {
+    width: 50%;
+    display: flex;
+}
+.selectPlaylist-delete select {
+    font-family: 'Poppins', sans-serif;
+    height: 50px;
+    width: 150px;
+    border-radius: 40px;
+    background-color: white;
+    border: none;
+    margin-left: 20px;
+    cursor: pointer;
+    margin-top: 20px;
+    text-align: center;
+}
+.deletePlaylistButton {
+    font-family: 'Poppins', sans-serif;
+    height: 50px;
+    width: 150px;
+    border-radius: 40px;
+    background-color: red;
+    border: none;
+    margin-left: 20px;
+    cursor: pointer;
+    margin-top: 20px;
+    color: white;
+}
+
+.Create-Playlist-Container2 {
+    width: 60%;
+    display: flex;
+}
+.Create-Playlist-Container2 select {
+    font-family: 'Poppins', sans-serif;
+    height: 50px;
+    width: 150px;
+    border-radius: 40px;
+    background-color: white;
+    border: none;
+    margin-left: 20px;
+    cursor: pointer;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.Create-Playlist-Container2 input {
+    font-family: 'Poppins', sans-serif;
+    height: 20px;
+    width: 250px;
+    padding: 15px;
+    border-radius: 40px;
+    border: none;
+    margin-top: 20px;
+    margin-left: 2%;
+}
+
+.Create-Playlist-Container3 {
+    width: 60%;
+    display: flex;
+}
+.Create-Playlist-Container3 select {
+    font-family: 'Poppins', sans-serif;
+    height: 50px;
+    width: 280px;
+    border-radius: 40px;
+    background-color: white;
+    border: none;
+    margin-left: 2%;
+    cursor: pointer;
+    margin-top: 20px;
+    text-align: center;
+}

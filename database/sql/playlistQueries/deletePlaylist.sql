@@ -1,0 +1,1 @@
+DELETE FROM userplaylist WHERE playlistId LIKE ?

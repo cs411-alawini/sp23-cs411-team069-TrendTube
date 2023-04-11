@@ -8,14 +8,33 @@ import { AiOutlineDislike, AiOutlineLike } from 'react-icons/ai'
 import { FaRegHeart } from 'react-icons/fa'
 import Slider from 'react-slick'
 import Profile from './Profile/Profile';
+import Playlist from './Playlist/Playlist'
+import Saved from './Saved/Saved'
+import History from './History/History'
 
-function Videos({val, id}) {
+function Videos({val, id, userData}) {
+
+  const [allPlaylists, setAllPlaylists] = useState([])
+  const [addPlaylist, setAddPlaylist] = useState([]);
+
+  useEffect(() => {
+    Axios.get("http://localhost:4000/api/get/getPlaylists")
+    .then((response) => {
+      setAllPlaylists(response.data.filter((x) =>  x.user_Id === userData.data[0].userId))
+    });
+  },[])
+
   const handleSubmit = (link) => {
     Axios.post(link, JSON.stringify({ ID: id }), {
       headers: {
         'Content-Type': 'application/json'
       }
     }).then((response) => {console.log(response)});
+  }
+
+  const handleSubmit2 = (e) => {
+    e.preventDefault();
+
   }
 
   return (
@@ -25,7 +44,17 @@ function Videos({val, id}) {
         <button className='like' onClick={() => { handleSubmit("http://localhost:4000/api/post/like") }}><AiOutlineLike className='iconVid'/></button>
         <button className='dislike' onClick={() => { handleSubmit("http://localhost:4000/api/post/dislike") }}><AiOutlineDislike className='iconVid'/></button>
         <button className='saved' onClick={() => { handleSubmit("http://localhost:4000/api/post/save") }}><FaRegHeart className='iconVid'/></button>
-        <button className='fullScreen'>Full Screen</button>
+        <select className='fullScreen' onChange={(e) => { console.log(e.target.value); setAddPlaylist(e.target.value);}}>
+          <option disabled selected>Select Playlist</option>
+          {
+            allPlaylists.map((playlist) => {
+              return (
+                <option value = {playlist.playlistId}>{playlist.playlistName}</option>
+              )
+            })
+          }
+        </select>
+        <button className="addVideoToPlaylistButton" onClick={ handleSubmit2 }>Add Video to Playlist</button>
       </div>    
     </div>
   )
@@ -118,7 +147,7 @@ function VideoSection(props) {
             {popular.map((val)=>{
               var string = "https://www.youtube.com/embed/" + val;
               var video_id = "" + val;
-              return <Videos key={video_id} val={string} id={video_id}/>
+              return <Videos key={video_id} val={string} id={video_id} userData={props.userInfo}/>
             })}
           </Slider>
           <br/><br/><br/>
@@ -126,7 +155,7 @@ function VideoSection(props) {
             {videos.map((val)=>{
               var string = "https://www.youtube.com/embed/" + val.video_id;
               var video_id = "" + val.video_id;
-              return <Videos key={video_id} val={string} id={video_id}/>
+              return <Videos key={video_id} val={string} id={video_id} userData={props.userInfo}/>
             })}
           </Slider>
         </div>
@@ -134,17 +163,19 @@ function VideoSection(props) {
     } else if (props.pageState === "Saved") {
       return (
         <>
-        
+          <Saved/>
         </>
       )
     } else if (props.pageState === "History") {
       return (
         <>
+          <History/>
         </>
       )
     } else if (props.pageState === "Playlist") {
       return (
         <>
+          <Playlist userData = { props.userInfo }/>
         </>
       )
     } else if (props.pageState === "Profile") {
