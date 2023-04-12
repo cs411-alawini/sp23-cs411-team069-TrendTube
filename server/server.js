@@ -329,9 +329,10 @@ app.delete('/api/delete/deletePlaylist/:ID', (req,res) => {
 // GET Request: Get All Videos from PlaylistID
 // @req -> getting info from frontend
 // @res -> sending info to frontend
-app.get('/api/get/getVideosFromPlaylist', (req,res) => {
+app.get('/api/get/getVideosFromPlaylist/:ID', (req,res) => {
     // Table: UserPlaylist(playlistID INT [PK], userID INT [FK to User.userID], playlistName VARCHAR(30))
-    db.query(getVideos, (err, result) => {
+    console.log(req.params.ID)
+    db.query(getVideos, [req.params.ID] ,(err, result) => {
         if (err) {
             console.log(err)
         } else {
@@ -344,8 +345,13 @@ app.get('/api/get/getVideosFromPlaylist', (req,res) => {
 // @req -> getting info from frontend
 // @res -> sending info to frontend
 app.post('/api/post/addVideosToPlaylist', (req,res) => {
-    db.query(addVideo, [], (err, result) => {
-
+    console.log(req.body);
+    db.query(addVideo, [req.body.PlaylistID, req.body.VideoID], (err, result) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.send("Added Video to " + req.body.PlaylistID + " Playlist");
+        }
     });
 });
 
@@ -354,13 +360,19 @@ app.post('/api/post/addVideosToPlaylist', (req,res) => {
 // @res -> sending info to frontend
 app.delete('/api/delete/removeVideoFromPlaylist/:ID', (req,res) => {
     // Table: UserPlaylist(playlistID INT [PK], userID INT [FK to User.userID], playlistName VARCHAR(30))
-    db.query(removeVideo, [req.params.ID], (err, result) => {
+    
+    var val = req.params.ID
+    var val3 = JSON.parse(val)
+    console.log(val3['VideoID'])
+    
+    db.query(removeVideo, [val3.VideoID, val3.PlaylistID], (err, result) => {
         if (err) {
             console.log(err)
         } else {
-            res.send("Deleted Playlist");
+            res.send("Deleted Video From Playlist");
         }
     });
+    
 });
 
 

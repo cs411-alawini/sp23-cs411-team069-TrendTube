@@ -6,13 +6,35 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import './playlist.css'
 
+
+function Videos({val, id, videoId}) {
+  console.log(videoId);
+  const handleSubmit = (link) => {
+    Axios.delete("http://localhost:4000/api/delete/removeVideoFromPlaylist/" + JSON.stringify({ PlaylistID: id, VideoID: videoId }), {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then((response) => {console.log(response)});
+  }
+
+  return (
+    <div className='PlaylistVideos'>
+      <iframe className="videoBox" height="180px" width="288px" src={val}></iframe>
+      <div className="playlistBar">
+        <button className="removeVideoFromPlaylist" onClick={ handleSubmit }>Remove Video from Playlist</button>
+      </div>    
+    </div>
+  )
+}
+
 function Playlist(props) {
   const [allPlaylists, setAllPlaylists] = useState([]);
   const [newPlaylistName, setPlaylistName] = useState("");
   const [deletePlaylistName, setPlaylistNameDelete] = useState("");
   const [updatePlaylist, setUpdatePlaylist] = useState("");
   const [updatePlaylistName, setUpdatePlaylistName] = useState("");
-  const [displayPlaylistName, setDisplayPlaylist] = useState([]);
+  const [displayPlaylistName, setDisplayPlaylist] = useState("");
+  const [allVideos, setAllVideos] = useState([]);
 
   const handleSubmit1 = (e) => {
     e.preventDefault();
@@ -50,6 +72,11 @@ function Playlist(props) {
 
   const handleSubmit4 = (e) => {
     e.preventDefault();
+    console.log(displayPlaylistName);
+    Axios.get("http://localhost:4000/api/get/getVideosFromPlaylist/" + displayPlaylistName).then((req) => {
+      console.log(req)
+      setAllVideos(req.data)
+    })
   }
 
   useEffect(() => {
@@ -57,14 +84,10 @@ function Playlist(props) {
     .then((response) => {
       setAllPlaylists(response.data.filter((x) =>  x.user_Id === props.userData.data[0].userId))
     });
-    Axios.get("http://localhost:4000/api/get/getVideosFromPlaylist").then((req) => {
-      var list = [];
-      for (var i = 0; i < req.length; i++) {
-        list.push(req.data[i]);
-      }
-      setDisplayPlaylist(list);
-    })
   }, []) 
+
+
+
 
   var settings = {
     dots: false,
@@ -157,7 +180,11 @@ function Playlist(props) {
             </form>
           </div>
           <div className='Video-inner-container'>
-            
+              {allVideos.map((val)=>{
+              var string = "https://www.youtube.com/embed/" + val.video_id;
+              var video_id = "" + val.video_id;
+              return <Videos key={video_id} val={string} id={displayPlaylistName} videoId={val.video_id}/>
+            })}
           </div>
         </div>
       </div>
