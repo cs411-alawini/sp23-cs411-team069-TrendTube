@@ -43,6 +43,10 @@ const createPlaylist = fs.readFileSync('../database/sql/playlistQueries/createPl
 const deletePlaylist = fs.readFileSync('../database/sql/playlistQueries/deletePlaylist.sql').toString();
 const getPlaylist = fs.readFileSync('../database/sql/playlistQueries/getPlaylists.sql').toString();
 const updatePlaylist = fs.readFileSync('../database/sql/playlistQueries/updatePlaylist.sql').toString();
+const getVideos = fs.readFileSync('../database/sql/playlistQueries/getVideo.sql').toString();
+const addVideo = fs.readFileSync('../database/sql/playlistQueries/addVideo.sql').toString();
+const removeVideo = fs.readFileSync('../database/sql/playlistQueries/removeVideo.sql').toString();
+
 
 // GET Request: Fetch Data
 // @req -> getting info from frontend
@@ -320,7 +324,8 @@ app.delete('/api/delete/deletePlaylist/:ID', (req,res) => {
     });
 });
 
-/*
+// <------------ VIDEO-PLAYLIST CRUD --------------> 
+
 // GET Request: Get All Videos from PlaylistID
 // @req -> getting info from frontend
 // @res -> sending info to frontend
@@ -339,16 +344,8 @@ app.get('/api/get/getVideosFromPlaylist', (req,res) => {
 // @req -> getting info from frontend
 // @res -> sending info to frontend
 app.post('/api/post/addVideosToPlaylist', (req,res) => {
-    db.query(checkUser, [req.body.username, req.body.password], (err, result) => {
-        if (err) {
-            console.log(err)
-        } else {
-            if (result.length == 0) {
-                res.send("null");
-            } else {
-                res.send(result);
-            }
-        }
+    db.query(addVideo, [], (err, result) => {
+
     });
 });
 
@@ -365,7 +362,7 @@ app.delete('/api/delete/removeVideoFromPlaylist/:ID', (req,res) => {
         }
     });
 });
-*/
+
 
 // <------------  USER-VIDEO INTERACTION --------------> 
 

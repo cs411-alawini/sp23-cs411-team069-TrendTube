@@ -34,7 +34,11 @@ function Videos({val, id, userData}) {
 
   const handleSubmit2 = (e) => {
     e.preventDefault();
-
+    Axios.post("http://localhost:4000/api/post/addVideosToPlaylist", JSON.stringify({ VideoID: id, PlaylistID: addPlaylist }), {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then((response) => {console.log(response)});
   }
 
   return (
