@@ -6,6 +6,7 @@ import './videoSection.css'
 import Axios from 'axios'
 import { AiOutlineDislike, AiOutlineLike } from 'react-icons/ai'
 import { FaRegHeart } from 'react-icons/fa'
+import { FiBookmark } from 'react-icons/fi'
 import Slider from 'react-slick'
 import Profile from './Profile/Profile';
 import Playlist from './Playlist/Playlist'
@@ -41,13 +42,23 @@ function Videos({val, id, userData}) {
     }).then((response) => {console.log(response)});
   }
 
+  const handleSubmit3 = (link) => {
+    var date = new Date();
+    console.log(date.toString());
+    Axios.post(link, JSON.stringify({ VideoID: id, UserID: userData.data[0].userId, Date: date }), { 
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then((response) => {console.log(response)});
+  }
+
   return (
     <div className='Videos'>
       <iframe height="180px" width="288px" src={val}></iframe>
       <div className="bottomBar">
         <button className='like' onClick={() => { handleSubmit("http://localhost:4000/api/post/like") }}><AiOutlineLike className='iconVid'/></button>
         <button className='dislike' onClick={() => { handleSubmit("http://localhost:4000/api/post/dislike") }}><AiOutlineDislike className='iconVid'/></button>
-        <button className='saved' onClick={() => { handleSubmit("http://localhost:4000/api/post/save") }}><FaRegHeart className='iconVid'/></button>
+        <button className='saved' onClick={() => { handleSubmit3("http://localhost:4000/api/post/save") }}><FiBookmark className='iconVid'/></button>
         <select className='fullScreen' onChange={(e) => { console.log(e.target.value); setAddPlaylist(e.target.value);}}>
           <option disabled selected>Select Playlist</option>
           {
@@ -67,6 +78,7 @@ function Videos({val, id, userData}) {
 function VideoSection(props) {
   const [videos, setData] = useState([]);
   const [popular, setPopular] = useState([]);
+  const [recommended, setRecommended] = useState([]);
 
   console.log(props.searchData);
   // GET request only works on refresh
@@ -74,6 +86,10 @@ function VideoSection(props) {
     Axios.get("http://localhost:4000/api/get/initialValues").then((req) => { 
       setData(req.data);
     }).catch((err) => { console.log(err); });
+    Axios.get("http://localhost:4000/api/get/getRecommended").then((req) => {
+      console.log(req);
+      setRecommended(req.data)
+    })
     Axios.get("http://localhost:4000/api/get/popularValues").then((req) => { 
       //setPopular(req.data);
       var list = [];
@@ -162,12 +178,20 @@ function VideoSection(props) {
               return <Videos key={video_id} val={string} id={video_id} userData={props.userInfo}/>
             })}
           </Slider>
+          <br/><br/><br/>
+          <Slider {...settings}>
+            {recommended.map((val)=>{
+              var string = "https://www.youtube.com/embed/" + val;
+              var video_id = "" + val;
+              return <Videos key={video_id} val={string} id={video_id} userData={props.userInfo}/>
+            })}
+          </Slider>
         </div>
       )
     } else if (props.pageState === "Saved") {
       return (
         <>
-          <Saved/>
+          <Saved userData = { props.userInfo }/>
         </>
       )
     } else if (props.pageState === "History") {

@@ -62,7 +62,7 @@ function Sidebar(props) {
   let title = useRef('rendtube');
   let main = useRef('Main');
   let saved = useRef('Saved');
-  let history = useRef('History');
+  let history = useRef('Recommended');
   let playlist = useRef('Playlist');
   let signOut = useRef('Sign Out');
   let profile = useRef('Profile');
@@ -95,7 +95,7 @@ function Sidebar(props) {
         arrow.current = <HiArrowSmLeft/>;
         title.current = 'rendtube';
         main.current = 'Main';
-        history.current = 'History';
+        history.current = 'Recommended';
         saved.current = 'Saved';
         playlist.current = 'Playlist';
         signOut.current = 'Sign Out';
@@ -118,7 +118,7 @@ function Sidebar(props) {
         <div className='options'>
             <button className='Main' onClick={()=>{ props.changeSidebar('Main'); props.setSearch("[]"); }}><BiHomeAlt className='icon'/>{ main.current }</button>
             <button className='Saved' onClick={()=>{ props.changeSidebar('Saved'); props.setSearch("[]"); }}><FiBookmark className='icon'/>{ saved.current }</button>
-            <button className='History' onClick={()=>{ props.changeSidebar('History'); props.setSearch("[]");  }}><BiHistory className='icon'/>{ history.current }</button>
+            <button className='History' onClick={()=>{ props.changeSidebar('Recommended'); props.setSearch("[]");  }}><BiHistory className='icon'/>{ history.current }</button>
             <button className='Playlist' onClick={()=>{ props.changeSidebar('Playlist'); props.setSearch("[]");  }}><MdPlaylistAdd className='icon'/>{ playlist.current }</button>
             <button className='Profile' onClick={()=>{ props.changeSidebar('Profile'); props.setSearch("[]");  }}><CgProfile className='icon'/>{ profile.current }</button>
             <button className='SignOut' onClick={() => { props.logoutStatus(false); props.setSearch("[]");  }}><FaSignOutAlt className='icon'/>{ signOut.current }</button>

@@ -46,7 +46,12 @@ const updatePlaylist = fs.readFileSync('../database/sql/playlistQueries/updatePl
 const getVideos = fs.readFileSync('../database/sql/playlistQueries/getVideo.sql').toString();
 const addVideo = fs.readFileSync('../database/sql/playlistQueries/addVideo.sql').toString();
 const removeVideo = fs.readFileSync('../database/sql/playlistQueries/removeVideo.sql').toString();
-
+const recommend = fs.readFileSync('../database/sql/advancedQuery/recommendedVideosForUser.sql').toString();
+const getWatchedVideos = fs.readFileSync('../database/sql/watched/getWatchedVideos.sql').toString();
+const getAllWatchedVideos = fs.readFileSync('../database/sql/watched/getAllWatchedVideos.sql').toString();
+const setWatchedVideos = fs.readFileSync('../database/sql/watched/setWatchedVideos.sql').toString();
+const getAllUserWatchedVideo = fs.readFileSync('../database/sql/watched/getAllUserWatchedVideo.sql').toString();
+const deleteSavedVideo = fs.readFileSync('../database/sql/watched/deleteSavedVideo.sql').toString()
 
 // GET Request: Fetch Data
 // @req -> getting info from frontend
@@ -375,16 +380,112 @@ app.delete('/api/delete/removeVideoFromPlaylist/:ID', (req,res) => {
     
 });
 
+// <------------  Get Recommended Videos INTERACTION --------------> 
 
-// <------------  USER-VIDEO INTERACTION --------------> 
+// GET Request: Get Recommended Video
+// @req -> getting info from frontend
+// @res -> sending info to frontend
+app.get('/api/get/getRecommended/:ID', (req,res) => {
+    // Table: WatchedVideo(watchedVideoID INT [PK], trendingVideoID VARCHAR(11) [FK to TrendingVideo.videoID], userID INT [FK to User.userID], watchedDate DATE)
+    db.query(recommend, [req.params.ID,req.params.ID], (err, result) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.send(result);
+        }
+    });
+});
 
-// POST Request: Create Data
+
+// <------------  Saved INTERACTION --------------> 
+
+// POST Request: Insert a Saved Video
 // @req -> getting info from frontend
 // @res -> sending info to frontend
 app.post('/api/post/save', (req,res) => {
     // Table: WatchedVideo(watchedVideoID INT [PK], trendingVideoID VARCHAR(11) [FK to TrendingVideo.videoID], userID INT [FK to User.userID], watchedDate DATE)
-    res.send(req.body.ID);
+    console.log(req.body);
+    var val = req.body.Date.split("T")
+    console.log(val[0]);
+    var date = val[0];
+    var time = " 00:00:00"
+    var datetime = date + time;
+    console.log(datetime);
+
+    db.query(getWatchedVideos, [req.body.VideoID, req.body.UserID] , (err, result) => {
+        if (err) {
+            console.log(err)
+        } else {
+            if (result.length === 0) {
+                db.query(getAllWatchedVideos, (err, result) => {
+                    if (err) {
+                        console.log(err)
+                    } else {
+                        
+                        const list = []
+
+                        for (var i = 0; i < result.length ; i++) {
+                            list.push(parseInt(result[i].watchedVideoId))
+                        }
+
+                        console.log(list)
+
+                        let val = Math.max.apply(Math, list) + 1
+
+                        console.log(val);
+            
+                        
+                        db.query(setWatchedVideos, [val, datetime, req.body.UserID, req.body.VideoID], (err, result) => {
+                            if (err) {
+                                console.log(err)
+                            } else {
+                                res.send(result);
+                            }
+                        });
+                        
+                    }
+                });
+            } else {
+                console.log("not free")
+            }
+        }
+    });
 });
+
+// GET Request: Get Saved Video
+// @req -> getting info from frontend
+// @res -> sending info to frontend
+app.get('/api/get/getSave/:ID', (req,res) => {
+    // Table: WatchedVideo(watchedVideoID INT [PK], trendingVideoID VARCHAR(11) [FK to TrendingVideo.videoID], userID INT [FK to User.userID], watchedDate DATE)
+    // Note: For saved Videos, Date != 00-00-00
+    console.log(req.params.ID)
+    db.query(getAllUserWatchedVideo, [req.params.ID] ,(err, result) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.send(result);
+        }
+    });
+});
+
+// DELETE Request: Delete Saved Video
+// @req -> getting info from frontend
+// @res -> sending info to frontend
+app.delete('/api/delete/save/:ID', (req,res) => {
+    // Table: WatchedVideo(watchedVideoID INT [PK], trendingVideoID VARCHAR(11) [FK to TrendingVideo.videoID], userID INT [FK to User.userID], watchedDate DATE)
+    var list = req.params.ID.split(",")
+    console.log(list)
+    
+    db.query(deleteSavedVideo, [list[0], list[1]], (err, result) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.send(result);
+        }
+    });
+});
+
+// <------------ Recommend INTERACTION --------------> 
 
 // POST Request: Create Data
 // @req -> getting info from frontend
@@ -392,14 +493,8 @@ app.post('/api/post/save', (req,res) => {
 app.post('/api/post/like', (req,res) => {
     // Table: RecommendsFrom(watchedVideoID INT, recommendedVideoID INT)
     // Table: RecommendedVideo(recommendedVideoID INT [PK], trendingVideoID VARCHAR(11) [FK to TrendingVideo.videoID], userID INT [FK to User.userID])
+    
     console.log(req.body.ID);
-    res.send(req.body.ID);
-});
-
-// POST Request: Create Data
-// @req -> getting info from frontend
-// @res -> sending info to frontend
-app.post('/api/post/dislike', (req,res) => {
     res.send(req.body.ID);
 });
 

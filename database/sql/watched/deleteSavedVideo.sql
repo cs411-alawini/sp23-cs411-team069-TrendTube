@@ -1,0 +1,1 @@
+DELETE FROM watchedvideos WHERE user_Id = ? AND video_id = ?

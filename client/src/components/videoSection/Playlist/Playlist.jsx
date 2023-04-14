@@ -184,7 +184,7 @@ function Playlist(props) {
               var string = "https://www.youtube.com/embed/" + val.video_id;
               var video_id = "" + val.video_id;
               return <Videos key={video_id} val={string} id={displayPlaylistName} videoId={val.video_id}/>
-            })}
+              })}
           </div>
         </div>
       </div>
