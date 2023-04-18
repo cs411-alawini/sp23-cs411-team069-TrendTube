@@ -5,13 +5,12 @@ import "slick-carousel/slick/slick-theme.css";
 import './videoSection.css'
 import Axios from 'axios'
 import { AiOutlineDislike, AiOutlineLike } from 'react-icons/ai'
-import { FaRegHeart } from 'react-icons/fa'
 import { FiBookmark } from 'react-icons/fi'
 import Slider from 'react-slick'
 import Profile from './Profile/Profile';
 import Playlist from './Playlist/Playlist'
 import Saved from './Saved/Saved'
-import History from './History/History'
+import Recommended from './Recommended/Recommended'
 
 function Videos({val, id, userData}) {
 
@@ -43,6 +42,7 @@ function Videos({val, id, userData}) {
   }
 
   const handleSubmit3 = (link) => {
+    console.log("Got here")
     var date = new Date();
     console.log(date.toString());
     Axios.post(link, JSON.stringify({ VideoID: id, UserID: userData.data[0].userId, Date: date }), { 
@@ -56,7 +56,7 @@ function Videos({val, id, userData}) {
     <div className='Videos'>
       <iframe height="180px" width="288px" src={val}></iframe>
       <div className="bottomBar">
-        <button className='like' onClick={() => { handleSubmit("http://localhost:4000/api/post/like") }}><AiOutlineLike className='iconVid'/></button>
+        <button className='like' onClick={() => { handleSubmit3("http://localhost:4000/api/post/like") }}><AiOutlineLike className='iconVid'/></button>
         <button className='dislike' onClick={() => { handleSubmit("http://localhost:4000/api/post/dislike") }}><AiOutlineDislike className='iconVid'/></button>
         <button className='saved' onClick={() => { handleSubmit3("http://localhost:4000/api/post/save") }}><FiBookmark className='iconVid'/></button>
         <select className='fullScreen' onChange={(e) => { console.log(e.target.value); setAddPlaylist(e.target.value);}}>
@@ -155,7 +155,7 @@ function VideoSection(props) {
           {props.searchData.data.map((val)=>{
             var string = "https://www.youtube.com/embed/" + val.video_id;
             var video_id = "" + val.video_id;
-            return <Videos key={video_id} val={string} id={video_id}/>
+            return <Videos key={video_id} val={string} id={video_id} userData={props.userInfo}/>
           })}
       </div>
     )
@@ -194,10 +194,10 @@ function VideoSection(props) {
           <Saved userData = { props.userInfo }/>
         </>
       )
-    } else if (props.pageState === "History") {
+    } else if (props.pageState === "Recommended") {
       return (
         <>
-          <History/>
+          <Recommended userData = { props.userInfo }/>
         </>
       )
     } else if (props.pageState === "Playlist") {

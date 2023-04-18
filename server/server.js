@@ -51,7 +51,9 @@ const getWatchedVideos = fs.readFileSync('../database/sql/watched/getWatchedVide
 const getAllWatchedVideos = fs.readFileSync('../database/sql/watched/getAllWatchedVideos.sql').toString();
 const setWatchedVideos = fs.readFileSync('../database/sql/watched/setWatchedVideos.sql').toString();
 const getAllUserWatchedVideo = fs.readFileSync('../database/sql/watched/getAllUserWatchedVideo.sql').toString();
-const deleteSavedVideo = fs.readFileSync('../database/sql/watched/deleteSavedVideo.sql').toString()
+const deleteSavedVideo = fs.readFileSync('../database/sql/watched/deleteSavedVideo.sql').toString();
+const insertLiked = fs.readFileSync('../database/sql/watched/insertLikedVideo.sql').toString();
+const getLiked = fs.readFileSync('../database/sql/watched/getLikedVideos.sql').toString();
 
 // GET Request: Fetch Data
 // @req -> getting info from frontend
@@ -380,23 +382,6 @@ app.delete('/api/delete/removeVideoFromPlaylist/:ID', (req,res) => {
     
 });
 
-// <------------  Get Recommended Videos INTERACTION --------------> 
-
-// GET Request: Get Recommended Video
-// @req -> getting info from frontend
-// @res -> sending info to frontend
-app.get('/api/get/getRecommended/:ID', (req,res) => {
-    // Table: WatchedVideo(watchedVideoID INT [PK], trendingVideoID VARCHAR(11) [FK to TrendingVideo.videoID], userID INT [FK to User.userID], watchedDate DATE)
-    db.query(recommend, [req.params.ID,req.params.ID], (err, result) => {
-        if (err) {
-            console.log(err)
-        } else {
-            res.send(result);
-        }
-    });
-});
-
-
 // <------------  Saved INTERACTION --------------> 
 
 // POST Request: Insert a Saved Video
@@ -410,7 +395,7 @@ app.post('/api/post/save', (req,res) => {
     var date = val[0];
     var time = " 00:00:00"
     var datetime = date + time;
-    console.log(datetime);
+    console.log(datetime);  
 
     db.query(getWatchedVideos, [req.body.VideoID, req.body.UserID] , (err, result) => {
         if (err) {
@@ -474,8 +459,7 @@ app.get('/api/get/getSave/:ID', (req,res) => {
 app.delete('/api/delete/save/:ID', (req,res) => {
     // Table: WatchedVideo(watchedVideoID INT [PK], trendingVideoID VARCHAR(11) [FK to TrendingVideo.videoID], userID INT [FK to User.userID], watchedDate DATE)
     var list = req.params.ID.split(",")
-    console.log(list)
-    
+
     db.query(deleteSavedVideo, [list[0], list[1]], (err, result) => {
         if (err) {
             console.log(err)
@@ -493,9 +477,61 @@ app.delete('/api/delete/save/:ID', (req,res) => {
 app.post('/api/post/like', (req,res) => {
     // Table: RecommendsFrom(watchedVideoID INT, recommendedVideoID INT)
     // Table: RecommendedVideo(recommendedVideoID INT [PK], trendingVideoID VARCHAR(11) [FK to TrendingVideo.videoID], userID INT [FK to User.userID])
-    
-    console.log(req.body.ID);
-    res.send(req.body.ID);
+    console.log(req.body)
+    db.query(getLiked, [req.body.VideoID, req.body.UserID] , (err, result) => {
+        if (err) {
+            console.log(err)
+        } else {
+            if (result.length === 0) {
+                db.query(getAllWatchedVideos, (err, result) => {
+                    if (err) {
+                        console.log(err)
+                    } else {
+                        
+                        const list = []
+
+                        for (var i = 0; i < result.length ; i++) {
+                            list.push(parseInt(result[i].watchedVideoId))
+                        }
+
+                        console.log(list)
+
+                        let val = Math.max.apply(Math, list) + 1
+
+                        console.log(val);
+                        console.log(req.body)
+                        
+                        db.query(insertLiked, [val, null, req.body.UserID, req.body.VideoID] , (err, result) => {
+                            if (err) {
+                                console.log(err)
+                            } else {
+                                console.log(result)
+                            }
+                        });
+                        
+                    }
+                });
+            } else {
+                console.log("not free")
+            }
+        }
+    });
+});
+
+// GET Request: Get Recommended Video
+// @req -> getting info from frontend
+// @res -> sending info to frontend
+app.get('/api/get/getRecommended/:ID', (req,res) => {
+    // Table: WatchedVideo(watchedVideoID INT [PK], trendingVideoID VARCHAR(11) [FK to TrendingVideo.videoID], userID INT [FK to User.userID], watchedDate DATE)
+    console.log(req.params.ID)
+    console.log("HEY")
+    db.query(recommend, [req.params.ID, req.params.ID], (err, result) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.send(result);
+        }
+    });
 });
 
 //Our local host is running on port 4000
