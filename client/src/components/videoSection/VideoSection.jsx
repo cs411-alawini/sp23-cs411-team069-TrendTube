@@ -79,6 +79,7 @@ function VideoSection(props) {
   const [videos, setData] = useState([]);
   const [popular, setPopular] = useState([]);
   const [recommended, setRecommended] = useState([]);
+  const [videoCategory, setVideoCategory] = useState([]);
 
   console.log(props.searchData);
   // GET request only works on refresh
@@ -110,6 +111,30 @@ function VideoSection(props) {
       }
       setPopular(list2);      
     }).catch((err) => { console.log(err); });
+    Axios.get("http://localhost:4000/api/get/call/" + props.userInfo.data[0].userId).then((req) => {
+      var list3 = req.data[0];
+      console.log(list3);
+      console.log(list3[0].video_id)
+      
+      var list = [];
+      var list2 = [];
+      console.log(req.data[0].length)
+      while (list.length !== 15) {
+        var val = Math.trunc(Math.random() * req.data[0].length);
+        if (list.includes(val)) {
+          continue;
+        } else {
+          list.push(val);
+        }
+      }
+      console.log(list);
+      
+      for (var i = 0; i < list.length; i++) {
+        list2.push(list3[list[i]].video_id);
+      }
+      console.log(list2);
+      setVideoCategory(list2);
+    }).catch((err) => {console.log(err)})
   },[]);
   
   var settings = {
@@ -180,12 +205,13 @@ function VideoSection(props) {
           </Slider>
           <br/><br/><br/>
           <Slider {...settings}>
-            {recommended.map((val)=>{
-              var string = "https://www.youtube.com/embed/" + val;
-              var video_id = "" + val;
+            {videoCategory.map((val)=>{
+              var string = "https://www.youtube.com/embed/" + val.toString();
+              var video_id = "" + val.toString();
               return <Videos key={video_id} val={string} id={video_id} userData={props.userInfo}/>
             })}
           </Slider>
+          <br/><br/><br/>
         </div>
       )
     } else if (props.pageState === "Saved") {

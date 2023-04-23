@@ -3,6 +3,7 @@ const cors = require('cors')
 const app = express();
 const mysql = require('mysql');
 const fs = require('fs');
+const { Console } = require('console');
 
 // Every MySQL Database has a host, user, password, and database name
 // mySQL port: 3306
@@ -54,6 +55,7 @@ const getAllUserWatchedVideo = fs.readFileSync('../database/sql/watched/getAllUs
 const deleteSavedVideo = fs.readFileSync('../database/sql/watched/deleteSavedVideo.sql').toString();
 const insertLiked = fs.readFileSync('../database/sql/watched/insertLikedVideo.sql').toString();
 const getLiked = fs.readFileSync('../database/sql/watched/getLikedVideos.sql').toString();
+const call = fs.readFileSync('../database/sql/stored_procedure/call.sql').toString(); 
 
 // GET Request: Fetch Data
 // @req -> getting info from frontend
@@ -63,7 +65,6 @@ app.get('/api/get/initialValues', (req,res) => {
         if (err) {
             console.log(err)
         } else {
-            console.log(result);
             res.send(result);
         }
     });
@@ -533,6 +534,18 @@ app.get('/api/get/getRecommended/:ID', (req,res) => {
         }
     });
 });
+
+app.get('/api/get/call/:ID', (req, res) => {
+    console.log(req.params.ID)
+    db.query(call, [22, true,req.params.ID.toString()], (err, result) => {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log(result);
+            res.send(result);
+        }
+    });
+})
 
 //Our local host is running on port 4000
 app.listen(4000, () => {
