@@ -10,7 +10,7 @@
 SELECT video_id, title
 FROM trending_video
 WHERE channelTitle IN (SELECT channelTitle
-					   FROM watchedvideos w1 natural join trending_video t
-					   WHERE user_Id = ? AND WatchedDate IS NULL) 
-      AND video_id NOT IN (SELECT video_id from watchedvideos WHERE user_Id = ?)
+					   FROM recommendedvideos w1 natural join trending_video t
+					   WHERE user_Id = ?) 
+      AND video_id NOT IN (SELECT video_id from recommendedvideos WHERE user_Id = ?)
 ORDER BY likes DESC

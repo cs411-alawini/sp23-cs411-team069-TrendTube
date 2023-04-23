@@ -7,6 +7,7 @@ import Axios from 'axios'
 
 function Navbar(props) {
   const [lightOrDark, setLightOrDark] = useState(true); 
+  const [lang, setLang] = useState("");
   let searchString = useRef('');
   
   function updateSearchString(val) {
@@ -35,7 +36,7 @@ function Navbar(props) {
           }
         }}><HiSearch/></button>
       </div>
-      <select className='lang'>
+      <select className='lang' onChange={() => {setLang(e.target.value)}}>
         <option value='eng'>eng</option>
         <option value='spa'>spa</option>
         <option value='ger'>ger</option>
