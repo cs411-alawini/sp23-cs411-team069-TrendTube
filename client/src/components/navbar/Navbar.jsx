@@ -36,13 +36,6 @@ function Navbar(props) {
           }
         }}><HiSearch/></button>
       </div>
-      <select className='lang' onChange={() => {setLang(e.target.value)}}>
-        <option value='eng'>eng</option>
-        <option value='spa'>spa</option>
-        <option value='ger'>ger</option>
-        <option value='fra'>fra</option>
-        <option value='chi'>chi</option>
-      </select>
       <div className='welcome'>
         <h1>Welcome {props.userInfo.data[0].userName}</h1>
       </div>
@@ -51,3 +44,13 @@ function Navbar(props) {
 }
 
 export default Navbar
+
+/*
+<select className='lang' onChange={() => {setLang(e.target.value)}}>
+  <option value='eng'>eng</option>
+  <option value='spa'>spa</option>
+  <option value='ger'>ger</option>
+  <option value='fra'>fra</option>
+  <option value='chi'>chi</option>
+</select>
+*/
