@@ -19,6 +19,7 @@
 Lohit Muralidharan: Our project used Axios to make API requests between the frontend and backend. Initially, our frontend and backend was not able to send information to each other. After looking through a lot of Stack Overflow posts, we found out that we needed to specify a header inside the request. For example, if we were passing in JSON data, we needed *{ headers: { 'Content-Type': 'application/json' } }* as a seperate header in our axios request. This took up a lot of our time because we did not read the entire Axios documentation. Below are two links our team looked at. The first link was the link we initially looked at to make our POST requests, but the second link has the header properties we should have added into our requests.
 
 ```Axios Post Documentation: https://axios-http.com/docs/post_example```
+
 ```Axios Header Documentation: https://axios-http.com/docs/instance```
 
 Yifan Jiang: 
