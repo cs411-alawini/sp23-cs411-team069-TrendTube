@@ -9,6 +9,7 @@ In terms of our project proposal, our team initially decided we wanted to create
 ### Application Overview
 
 Functionalities:
+
 1] User Login/Register
 
 2] Main Page
