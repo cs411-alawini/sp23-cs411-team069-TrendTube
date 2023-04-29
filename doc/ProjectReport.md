@@ -37,5 +37,5 @@ Kaushik Pulgari:
 
 Lohit Muralidharan: Frontend ReactJS / Backend NodeJS <br />
 Yifan Jiang: Frontend ReactJS / Backend NodeJS <br />
-Lorenzo Bujalil Silva: Database Application SQL Queries Design / Python CSV Parsing <br />
+Lorenzo Bujalil Silva: Database Application SQL Queries Design / Python CSV Parsing UTF-8 Encoding <br />
 Kaushik Pulgari: Database Application SQL Queries Design / Database SQL Advanced Queries Design <br />
