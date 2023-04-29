@@ -33,6 +33,8 @@ Kaushik Pulgari:
 
 ### Improvements
 
+There are many improvements that could be made to our current application. For example, our videos take a lot of time to render videos. We have to look into solutions to render them more quickly. One thing our team looked at was Instersection Observer. Intersection Observer is an API that gives data on how much a component intersects with the visible portion of the website to the oberserver/user. There are probably solutions to render videos that only show up on the screen initially. If we scroll down to check out more videos, new videos will render. Another improvement to our website that we could make is to appeal to audience outside of english speaking countries. For example, we could add a page translation to our website where we would have a drop down to change the language of the page. Lastly, Our team got some feedback from friends, and one suggestion that stood out was that people wanted an autoplay feature. For example, if someone had a music playlist and were gaming, they would want to hear the music in the background and not have to click to select the next music to play.
+
 ### Division of Labor
 
 Lohit Muralidharan: Frontend ReactJS / Backend NodeJS <br />
