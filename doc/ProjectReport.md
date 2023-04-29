@@ -10,10 +10,15 @@ In terms of our project proposal, our team initially decided we wanted to create
 
 Functionalities:
 1] User Login/Register
+
 2] Main Page
+
 3] Saved Page
+
 4] Recommended Page
+
 5] Playlist Page
+
 6] Profile Page
 
 ### Changes in Schema/Sources of Data
