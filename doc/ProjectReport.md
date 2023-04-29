@@ -1,22 +1,22 @@
 # TrendTube
 
-### Project Report
+## Project Report
 
-## Changes in Project Proposal
+### Changes in Project Proposal
 
-## Application Overview
+### Application Overview
 
-## Changes in Schema/Sources of Data
+### Changes in Schema/Sources of Data
 
-## Changes in ER Diagram
+### Changes in ER Diagram
 
-## Changes in Functionalities
+### Changes in Functionalities
 
-## Advanced Database Programs/Queries
+### Advanced Database Programs/Queries
 
-## Technical Challenges
+### Technical Challenges
 
-## Improvements
+### Improvements
 
-## Division of Labor
+### Division of Labor
 
