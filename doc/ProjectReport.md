@@ -14,7 +14,11 @@
 
 ### Changes in Schema/Sources of Data
 
+In terms of Schema, our team did not make massive changes the overall design of our schema, but we did change a couple datatypes. For example, we changed parameters from text to int where int made more sense and would be easier to work with. We did however make changes to our csv data. We got our data from the Kaggle youtube trending video dataset. Our team used mySQL workbench due to the ease of testing queries and having control over a database. In mySQL workbench, we had the option to upload our kaggle dataset using *table import data wizard*. Our team ran into an issue where we our original dataset was not UTF-8 Encoded, so we ended up creating python scripts to edit our dataset so it can be UTF-8 Encoded.   
 
+```
+Youtube Trending Dataset: https://www.kaggle.com/datasets/rsrishav/youtube-trending-video-dataset/versions/930
+```
 
 ### Changes in ER Diagram
 
