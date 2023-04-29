@@ -2,15 +2,31 @@
 
 ## Project Report
 
+
+
 ### Changes in Project Proposal
+
+
 
 ### Application Overview
 
+
+
 ### Changes in Schema/Sources of Data
+
+
 
 ### Changes in ER Diagram
 
+
+
 ### Changes in Functionalities
+
+We removed one functionality in our final application: the language button. The language button was a button that allowed to change the page into different language based off of what the user selected. Time was the biggest factor into removing this component, and our team had to focus on building a minimum viable product first. This language button would be additional functionality that we would add to our website in the future. Another functionality we removed would be account recovery. Account recovery requires us to use an external API like Mailjet which we did not have time to implement. 
+
+```
+Mailjet API: https://www.mailjet.com/products/email-api/
+```
 
 ### Advanced Database Programs/Queries
 
