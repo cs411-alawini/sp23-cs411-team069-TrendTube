@@ -19,9 +19,7 @@
 ### Improvements
 
 ### Division of Labor
-a <br />
-b <br />
-c
+
 Lohit Muralidharan: Frontend ReactJS / Backend NodeJS <br />
 Yifan Jiang: Frontend ReactJS / Backend NodeJS <br />
 Lorenzo Bujalil Silva: Database Application SQL Queries Design / Python CSV Parsing <br />
