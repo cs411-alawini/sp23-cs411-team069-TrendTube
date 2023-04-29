@@ -22,3 +22,7 @@
 a <br />
 b <br />
 c
+Lohit Muralidharan: Frontend ReactJS / Backend NodeJS <br />
+Yifan Jiang: Frontend ReactJS / Backend NodeJS <br />
+Lorenzo Bujalil Silva: Database Application SQL Queries Design / Python CSV Parsing <br />
+Kaushik Pulgari: Database Application SQL Queries Design / Database SQL Advanced Queries Design <br />
