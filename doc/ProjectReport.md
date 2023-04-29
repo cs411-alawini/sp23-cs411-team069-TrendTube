@@ -2,11 +2,9 @@
 
 ## Project Report
 
-
-
 ### Changes in Project Proposal
 
-
+In terms of our project proposal, our team initially decided we wanted to create a mock youtube 2.0 with only trending videos. We stuck through this plan throughout the entire project and did not deviate from our original goal.
 
 ### Application Overview
 
