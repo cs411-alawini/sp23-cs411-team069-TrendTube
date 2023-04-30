@@ -210,11 +210,19 @@ Axios Post Documentation: https://axios-http.com/docs/post_example
 Axios Header Documentation: https://axios-http.com/docs/instance
 ```
 
-Yifan Jiang: 
+Yifan Jiang: The biggest issue was for me was solving *No Access-Control-Allow-Origin* error. This is an error that comes into place when we did not have Cors installed and included into our backend. Cors is *Cross-origin resource sharing* which allows us to put restricted resources in a web page. Because we did not install it using *npm install cors* we always recieved this issue in our consol on the webpage.
 
-Lorenzo Bujalil Silva: 
+```
+Cors: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
+```
 
-Kaushik Pulgari: 
+Lorenzo Bujalil Silva: One of the biggest issues I ran into was parsing the csv using python. There were lots of edits I had to make to the python file as we did multiple attempts to upload the data onto mySQL workbench using *table import data wizard*. We were able to convert it at the very end. 
+
+Kaushik Pulgari: In the stored procedure, it was a bit hard to debug because we did not know how to print anything out and see if our stored procedure even worked. To solve this issue, we found a solution online by creating a new table and displaying information from that new table using:
+
+```
+SELECT * FROM <table name>
+```
 
 ### Improvements
 
