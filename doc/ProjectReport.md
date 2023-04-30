@@ -32,7 +32,7 @@ Youtube Trending Dataset: https://www.kaggle.com/datasets/rsrishav/youtube-trend
 
 ### Changes in ER Diagram
 
-
+Our team did not make any changes in terms of the ER/UML diagram. We did make minor changes however in terms of how we would use 1 of our tables. On a side note, it did not change the structure of our database in any way shape or form. The one alteration in terms of how we used our database is in our recommendedvideos table. We had a trigger based implementation where if someone liked a video, a sql trigger would activate and insert a row into the recommendedvideos table. One of the parameters in our table was recommendedVideoId. We decided to add the videoId of the video we liked into that parameter rather than the videoID of similar videos because we already had an SQL query that would do this for us. In other words, we displayed recommended videos based off of liked videos using a tag team of the trigger and the external sql query. Otherwise, we did not change the structure of our UML diagram. All of our weak entity sets are still weak entity sets, and all of the Many-to-Many entities and regular entities are still Many-to-Many entities and regular entities.
 
 ### Changes in Functionalities
 
@@ -44,7 +44,113 @@ Mailjet API: https://www.mailjet.com/products/email-api/
 
 ### Advanced Database Programs/Queries
 
+Advanced Query 1:
+```
+  /* returns all of the most popular videos by the community */
+	SELECT channelTitle
+	FROM trending_video
+	GROUP BY channelTitle
+	HAVING SUM(likes)-SUM(dislikes) > 2000000
 
+
+	UNION 
+
+	/* returns 20 of the most recent channels which uploaded videos */
+	SELECT channelTitle
+	FROM trending_video
+	GROUP BY channelTitle
+	HAVING channelTitle IN (
+		select channelTitle
+		from (select* from trending_video order by publishedAt desc limit 20) val
+	)
+
+
+```
+
+Advanced Query 2:
+```
+/* 
+	returns video_id of videos that user_Id="1" should watch 
+*/
+/* 
+	In our CRUD backend, we will replace the user_Id="1" with 
+    the user that is currently logged in to show the videos
+    they should watch
+*/ 
+SELECT video_id, title
+FROM trending_video
+WHERE channelTitle IN (SELECT channelTitle
+					   FROM recommendedvideos w1 natural join trending_video t
+					   WHERE user_Id = ?) 
+      AND video_id NOT IN (SELECT video_id from recommendedvideos WHERE user_Id = ?)
+ORDER BY likes DESC
+```
+
+Stored Procedure:
+```
+CREATE DEFINER=`root`@`localhost` PROCEDURE `category`(IN categoryID INT, IN recommend BOOL, IN userID varchar(100))
+BEGIN
+	DECLARE catID INT;
+    DECLARE exit_loop BOOLEAN DEFAULT FALSE;
+	DECLARE categoryCursor CURSOR FOR (
+				SELECT categoryId
+				FROM recommendedvideos NATURAL JOIN trending_video
+				WHERE user_Id = userID
+				GROUP BY categoryId
+				HAVING  count(*) = (SELECT MAX(maxVal.count)
+									FROM (SELECT COUNT(video_id) as count
+										FROM trending_video NATURAL JOIN recommendedvideos 
+										WHERE user_Id = userID
+										GROUP BY categoryId) maxVal));
+	
+	DECLARE CONTINUE HANDLER FOR NOT FOUND SET exit_loop = TRUE;
+	DROP TABLE IF EXISTS NewTable;
+    CREATE TABLE NewTable(
+		video_id varchar(255) Primary Key,
+        categoryId INT
+    );
+    
+	IF recommend IS TRUE THEN
+		OPEN categoryCursor;
+			cloop: LOOP
+				FETCH categoryCursor INTO catID;
+				IF(exit_loop)THEN
+					LEAVE cloop;
+				END IF;
+				INSERT INTO NewTable(video_id, categoryId) 
+				SELECT t.video_id as video_id, t.categoryId as categoryId
+				FROM trending_video t
+				WHERE t.categoryId = catID; 
+			END LOOP cloop;
+		CLOSE categoryCursor;
+        
+        SELECT * FROM NewTable;
+                
+	ELSE
+		SELECT *
+		FROM trending_video
+        WHERE categoryId = categoryID;
+    END IF;
+END
+```
+```
+call category(?, ?, ?)
+```
+
+SQL Trigger:
+```
+DROP TRIGGER IF EXISTS `trendtube`.`watchedvideos_AFTER_INSERT`;
+
+DELIMITER $$
+USE `trendtube`$$
+CREATE DEFINER=`root`@`localhost` TRIGGER `watchedvideos_AFTER_INSERT` AFTER INSERT ON `watchedvideos` FOR EACH ROW BEGIN
+    /*SIGNAL SQLSTATE '02000' SET MESSAGE_TEXT=NEW.WatchedDate;*/
+    IF  NEW.WatchedDate IS NULL THEN
+		  INSERT INTO recommendedvideos VALUES (NEW.video_id, NEW.user_Id, NEW.video_id);
+    END IF;
+END$$
+DELIMITER ;
+```
 
 ### Technical Challenges
 
