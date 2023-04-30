@@ -39,9 +39,13 @@ Functionalities:
 
 ![image](https://user-images.githubusercontent.com/110351173/235334120-9bbd78d1-37ae-4552-a9d9-e4a8749770d6.png)
 
+The search bar is in the top of the website. Essentially, we can input anything, and it will search the trending video database of similar videos. The purple button in the 
+
 8] Extras
 
 ![image](https://user-images.githubusercontent.com/110351173/235334132-55dabf67-805e-4e76-968a-9eb0f6ae8824.png)
+
+We have 2 extra features in our website. The lightmode/darkmode button is on the left of the sidebar. We also have an purple arrow button on the bottom of the sidebar which minimizes and maximizes the sidebar
 
 ### Changes in Schema/Sources of Data
 
