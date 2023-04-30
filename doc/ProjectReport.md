@@ -12,15 +12,36 @@ Functionalities:
 
 1] User Login/Register
 
+![image](https://user-images.githubusercontent.com/110351173/235333938-79d88265-4d6a-4e2e-8d90-d9c734e604ba.png)
+
 2] Main Page
+
+![image](https://user-images.githubusercontent.com/110351173/235333966-bce50c72-cc69-40c9-811f-2183913b1b48.png)
+![image](https://user-images.githubusercontent.com/110351173/235333977-1ca72422-8103-4782-a38e-9c844c2fe30a.png)
 
 3] Saved Page
 
+![image](https://user-images.githubusercontent.com/110351173/235334037-99e68d78-6ee9-4e9a-9881-255e1d275ab5.png)
+
 4] Recommended Page
+
+![image](https://user-images.githubusercontent.com/110351173/235334033-1262e3c9-9609-4b12-b3a8-300c0b9f02a3.png)
 
 5] Playlist Page
 
+![image](https://user-images.githubusercontent.com/110351173/235334082-6e38d62e-ceb4-43c7-a6d9-affaf164fd83.png)
+
 6] Profile Page
+
+![image](https://user-images.githubusercontent.com/110351173/235334086-60d7cfa8-43c5-46d7-a595-ae158d86ddb9.png)
+
+7] Search 
+
+![image](https://user-images.githubusercontent.com/110351173/235334120-9bbd78d1-37ae-4552-a9d9-e4a8749770d6.png)
+
+8] Extras
+
+![image](https://user-images.githubusercontent.com/110351173/235334132-55dabf67-805e-4e76-968a-9eb0f6ae8824.png)
 
 ### Changes in Schema/Sources of Data
 
