@@ -14,38 +14,50 @@ Functionalities:
 
 ![image](https://user-images.githubusercontent.com/110351173/235333938-79d88265-4d6a-4e2e-8d90-d9c734e604ba.png)
 
+This is the start page. Essentially we can register our own account on this page by typing up a username, password, and an email account. We can then login to our account right after which will redirect us to the Main page.
+
 2] Main Page
 
 ![image](https://user-images.githubusercontent.com/110351173/235333966-bce50c72-cc69-40c9-811f-2183913b1b48.png)
 ![image](https://user-images.githubusercontent.com/110351173/235333977-1ca72422-8103-4782-a38e-9c844c2fe30a.png)
 
+In the main page, we have 3 slider rows. In the first slider row, we display ___ . In the second slider row, we have the most recent videos added to the trending videos dataset. In the third slider, we have the videos that are within the same Category ID of the videos we liked. Category ID are numbers that map to specific genre's of videos. For example, Horror can have category ID *X*, and Tech can have category ID *Y* where *X* and *Y* are numbers.  
+
 3] Saved Page
 
 ![image](https://user-images.githubusercontent.com/110351173/235334037-99e68d78-6ee9-4e9a-9881-255e1d275ab5.png)
+
+In this page, videos we saved by hitting the saved bookmark button under videos will be displayed.
 
 4] Recommended Page
 
 ![image](https://user-images.githubusercontent.com/110351173/235334033-1262e3c9-9609-4b12-b3a8-300c0b9f02a3.png)
 
+In this page, videos that are related to the videos you liked by clicking the thumbs up button under videos will be displayed.
+
 5] Playlist Page
 
 ![image](https://user-images.githubusercontent.com/110351173/235334082-6e38d62e-ceb4-43c7-a6d9-affaf164fd83.png)
+
+In this page, we can create our own playlist, select a playlist to delete, select a playlist to update the playlist name, and display the videos in the playlist. To add videos to a playlist, we can go to the main page, select playlist under a video you want to add, and then click *add video to playlist*. These videos in the playlist will be displayed when you are on the playlist page and select a playlist to be displayed.
 
 6] Profile Page
 
 ![image](https://user-images.githubusercontent.com/110351173/235334086-60d7cfa8-43c5-46d7-a595-ae158d86ddb9.png)
 
+This page can be reached through the sidebar. In the profile page, we can edit our own account email, username, and password. We can also delete our own account which will redirect us to the login register page and permanently delete our account. 
+
 7] Search 
 
 ![image](https://user-images.githubusercontent.com/110351173/235334120-9bbd78d1-37ae-4552-a9d9-e4a8749770d6.png)
 
-The search bar is in the top of the website. Essentially, we can input anything, and it will search the trending video database of similar videos. The purple button in the 
+The search bar is in the top of the website. Essentially, we can input anything, and it will search the trending video database of similar videos. The purple button inside the search bar is the search button. Once you click the search button, it will display the videos that are similar. 
 
 8] Extras
 
 ![image](https://user-images.githubusercontent.com/110351173/235334132-55dabf67-805e-4e76-968a-9eb0f6ae8824.png)
 
-We have 2 extra features in our website. The lightmode/darkmode button is on the left of the sidebar. We also have an purple arrow button on the bottom of the sidebar which minimizes and maximizes the sidebar
+We have 2 extra features in our website. The lightmode/darkmode button is on the left of the sidebar. We also have an purple arrow button on the bottom of the sidebar which minimizes and maximizes the sidebar.
 
 ### Changes in Schema/Sources of Data
 
