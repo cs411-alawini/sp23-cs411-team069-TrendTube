@@ -82,48 +82,56 @@ Mailjet API: https://www.mailjet.com/products/email-api/
 ### Advanced Database Programs/Queries
 
 Advanced Query 1:
+
+In our first advanced query, we get a list of the most popular video and the most recent videos added to the trending video dataset to be sent to the frontend. The frontend will randomly select 20 videos out of this list generated from this SQL query.
+
 ```
-  /* returns all of the most popular videos by the community */
-	SELECT channelTitle
-	FROM trending_video
-	GROUP BY channelTitle
-	HAVING SUM(likes)-SUM(dislikes) > 2000000
+/* returns all of the most popular videos by the community */
+SELECT channelTitle
+FROM trending_video
+GROUP BY channelTitle
+HAVING SUM(likes)-SUM(dislikes) > 2000000
 
 
-	UNION 
+UNION 
 
-	/* returns 20 of the most recent channels which uploaded videos */
-	SELECT channelTitle
-	FROM trending_video
-	GROUP BY channelTitle
-	HAVING channelTitle IN (
-		select channelTitle
-		from (select* from trending_video order by publishedAt desc limit 20) val
-	)
+/* returns 20 of the most recent channels which uploaded videos */
+SELECT channelTitle
+FROM trending_video
+GROUP BY channelTitle
+HAVING channelTitle IN (
+	select channelTitle
+	from (select* from trending_video order by publishedAt desc limit 20) val
+)
 
 
 ```
 
 Advanced Query 2:
+
+In this advanced query, we receive a list of videos that are similar to videos we liked based off of channel title. This list will be displayed on the our recommended page. Another key thing to note is that this query works in pair with our SQL trigger. Essentially, when we add a liked video to our watchedvideos table, we will also automatically insert that video into the recommendedvideos table. Therefore, the recommendedvideos table will only take in liked videos whereas the watchedvideos table will take in both liked and saved videos. This will improve performance because this advanced query has to only search through the recommendedvideos table which contains less videos than watchedvideos. This is an improvement we made from our previous 2nd Advanced Query.
+
 ```
 /* 
-	returns video_id of videos that user_Id="1" should watch 
+returns video_id of videos that user_Id="1" should watch 
 */
 /* 
-	In our CRUD backend, we will replace the user_Id="1" with 
-    the user that is currently logged in to show the videos
-    they should watch
+In our CRUD backend, we will replace the user_Id="1" with 
+the user that is currently logged in to show the videos
+they should watch
 */ 
 SELECT video_id, title
 FROM trending_video
 WHERE channelTitle IN (SELECT channelTitle
-					   FROM recommendedvideos w1 natural join trending_video t
-					   WHERE user_Id = ?) 
+		      FROM recommendedvideos w1 natural join trending_video t
+		      WHERE user_Id = ?) 
       AND video_id NOT IN (SELECT video_id from recommendedvideos WHERE user_Id = ?)
 ORDER BY likes DESC
 ```
 
 Stored Procedure:
+In our stored procedure, we recieve the trending videos that are similar to videos we liked by category id. This is what is being displayed in the main page in the third slider. We can call our stored procedure using *call category(?,?,?)*.
+
 ```
 call category(?, ?, ?)
 ```
@@ -131,7 +139,7 @@ call category(?, ?, ?)
 CREATE DEFINER=`root`@`localhost` PROCEDURE `category`(IN categoryID INT, IN recommend BOOL, IN userID varchar(100))
 BEGIN
 	DECLARE catID INT;
-    DECLARE exit_loop BOOLEAN DEFAULT FALSE;
+   	DECLARE exit_loop BOOLEAN DEFAULT FALSE;
 	DECLARE categoryCursor CURSOR FOR (
 				SELECT categoryId
 				FROM recommendedvideos NATURAL JOIN trending_video
@@ -145,10 +153,10 @@ BEGIN
 	
 	DECLARE CONTINUE HANDLER FOR NOT FOUND SET exit_loop = TRUE;
 	DROP TABLE IF EXISTS NewTable;
-    CREATE TABLE NewTable(
+    	CREATE TABLE NewTable(
 		video_id varchar(255) Primary Key,
         categoryId INT
-    );
+    	);
     
 	IF recommend IS TRUE THEN
 		OPEN categoryCursor;
@@ -164,17 +172,19 @@ BEGIN
 			END LOOP cloop;
 		CLOSE categoryCursor;
         
-        SELECT * FROM NewTable;
+       		SELECT * FROM NewTable;
                 
 	ELSE
 		SELECT *
 		FROM trending_video
-        WHERE categoryId = categoryID;
+        	WHERE categoryId = categoryID;
     END IF;
 END
 ```
 
 SQL Trigger:
+In our trigger, we essentially add videos to the recommendedvideos table to be displayed everytime we add a liked video to watchedvideos table. In the watchedvideos, we have both liked and saved videos. The main differentiator between the two is that we set our watched dates for liked videos to NULL which is how we know when to insert into recommendedvideos table.
+
 ```
 DROP TRIGGER IF EXISTS `trendtube`.`watchedvideos_AFTER_INSERT`;
 
