@@ -88,6 +88,9 @@ ORDER BY likes DESC
 
 Stored Procedure:
 ```
+call category(?, ?, ?)
+```
+```
 CREATE DEFINER=`root`@`localhost` PROCEDURE `category`(IN categoryID INT, IN recommend BOOL, IN userID varchar(100))
 BEGIN
 	DECLARE catID INT;
@@ -132,9 +135,6 @@ BEGIN
         WHERE categoryId = categoryID;
     END IF;
 END
-```
-```
-call category(?, ?, ?)
 ```
 
 SQL Trigger:
